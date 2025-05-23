@@ -1,0 +1,127 @@
+# https://docs.nvidia.com/aiqtoolkit/latest/tutorials/customize-a-workflow.html
+# https://docs.nvidia.com/agentiq/latest/concepts/plugins.html#entry-point
+# ai agent to understand and create ai agents with agentiq
+# RAG on system files
+# system file search
+# search online
+# RAG which already has info on codebase
+
+general:
+  use_uvloop: true
+
+functions:
+  # Add a tool to search wikipedia
+  wikipedia_search:
+    _type: wiki_search
+    max_results: 5
+  internet_search:
+    _type: tavily_internet_search
+    # needs an api key - export TAVILY_API_KEY=<YOUR_TAVILY_API_KEY>
+  current_datetime:
+    _type: current_datetime
+  exa_search:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9901/sse"
+    mcp_tool_name: web_search_exa
+    description: "Natural language web search"
+  # MCP Filesystem tools at port 9902
+  read_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: read_file
+    description: "Read the complete contents of a file from the file system."
+
+  read_multiple_files:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: read_multiple_files
+    description: "Read the contents of multiple files simultaneously."
+
+  write_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: write_file
+    description: "Create a new file or completely overwrite an existing file with new content."
+
+  edit_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: edit_file
+    description: "Make line-based edits to a text file."
+
+  create_directory:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: create_directory
+    description: "Create a new directory or ensure a directory exists."
+
+  list_directory:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: list_directory
+    description: "Get a detailed listing of all files and directories in a specified path."
+
+  directory_tree:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: directory_tree
+    description: "Get a recursive tree view of files and directories as a JSON structure."
+
+  move_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: move_file
+    description: "Move or rename files and directories."
+
+  search_files:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: search_files
+    description: "Recursively search for files and directories matching a pattern."
+
+  get_file_info:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: get_file_info
+    description: "Retrieve detailed metadata about a file or directory."
+
+  list_allowed_directories:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: list_allowed_directories
+    description: "Returns the list of directories that this server is allowed to access."
+  # langsmith_query:
+  #   _type: webpage_query
+  #   webpage_url: https://docs.smith.langchain.com
+  #   description: "Search for information about LangSmith. For any questions about LangSmith, you must use this tool!"
+  #   embedder_name: nv-embedqa-e5-v5
+  #   chunk_size: 512
+  # langgraph_query:
+  #   _type: webpage_query
+  #   webpage_url: https://langchain-ai.github.io/langgraph/tutorials/introduction
+  #   description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
+  #   embedder_name: nv-embedqa-e5-v5
+  #   chunk_size: 512
+
+llms:
+  #  l AIQ toolkit which LLM to use for the agent
+  nim_llm:
+    _type: nim
+    model_name: meta/llama-3.1-70b-instruct
+    temperature: 0.5
+  # openai_llm:
+  #   _type: openai
+  #   model_name: gpt-3.5-turbo
+  #   max_tokens: 2000
+
+workflow:
+  # Use an agent that 'reasons' and 'acts' - https://react-lm.github.io/
+  # https://docs.nvidia.com/aiqtoolkit/latest/workflows/about/reasoning-agent.html
+  # https://docs.nvidia.com/aiqtoolkit/latest/workflows/about/rewoo-agent.html
+  _type: react_agent
+
+  tool_names: [exa_search, current_datetime, read_file, write_file, edit_file, create_directory, list_directory, directory_tree, move_file, search_files, get_file_info, list_allowed_directories]
+  llm_name: nim_llm
+  verbose: true
+  retry_parsing_errors: true
+  max_retries: 3
