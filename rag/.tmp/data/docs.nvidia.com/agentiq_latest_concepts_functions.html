@@ -1,0 +1,1523 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Functions &#8212; AgentIQ</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=d0aa047a" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=5ceeb459"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/functions';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Workflow Configuration" href="workflow-configuration.html" />
+    <link rel="prev" title="NVIDIA AgentIQ Concepts" href="index.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+
+
+    <script src="https://assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js" ></script>
+    
+
+
+  <link rel="stylesheet" href="/common-libs/common.css">
+<script src="/common-libs/common.js"></script>
+<script src="//assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/index.html">Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/why-agentiq.html">Why Use NVIDIA AgentIQ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/install.html">Install AgentIQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/get-started.html">Get Started</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/create-customize-workflows.html">Create and Customize Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/sharing-workflows-and-tools.html">Share Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/evaluate.html">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/custom-evaluator.html">Custom Evaluator</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../guides/observe-workflow-with-phoenix.html">Observing a Workflow with Phoenix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/using-agentiq-ui-and-server.html">Use User Interface and API Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/profiler.html">Profile a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/adding-an-llm-provider.html">Adding an LLM Provider</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow-configuration.html">Workflow Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiler.html">Profile and Monitor Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluate.html">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observability.html">Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html">Plugins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../components/index.html">Components</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../components/react-agent.html">ReAct Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/reasoning-agent.html">Reasoning Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/tool-calling-agent.html">Tool Calling Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/retriever.html">Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/mcp.html">Model Context Protocol (MCP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/code-execution.html">Code Execution Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/contributing.html">Contributing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../references/index.html">References</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/interactive-models.html">Interactive Models Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/websockets.html">WebSocket Message Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/aiq/index.html">aiq</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/agent/index.html">aiq.agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/base/index.html">aiq.agent.base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/react_agent/index.html">aiq.agent.react_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/agent/index.html">aiq.agent.react_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/output_parser/index.html">aiq.agent.react_agent.output_parser</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/prompt/index.html">aiq.agent.react_agent.prompt</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/register/index.html">aiq.agent.react_agent.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/index.html">aiq.agent.reasoning_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/reasoning_agent/index.html">aiq.agent.reasoning_agent.reasoning_agent</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/register/index.html">aiq.agent.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/index.html">aiq.agent.tool_calling_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/agent/index.html">aiq.agent.tool_calling_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/register/index.html">aiq.agent.tool_calling_agent.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/builder/index.html">aiq.builder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/builder/index.html">aiq.builder.builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/component_utils/index.html">aiq.builder.component_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/context/index.html">aiq.builder.context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/embedder/index.html">aiq.builder.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/eval_builder/index.html">aiq.builder.eval_builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/evaluator/index.html">aiq.builder.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/framework_enum/index.html">aiq.builder.framework_enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/front_end/index.html">aiq.builder.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function/index.html">aiq.builder.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_base/index.html">aiq.builder.function_base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_info/index.html">aiq.builder.function_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/intermediate_step_manager/index.html">aiq.builder.intermediate_step_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/llm/index.html">aiq.builder.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/retriever/index.html">aiq.builder.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/user_interaction_manager/index.html">aiq.builder.user_interaction_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow/index.html">aiq.builder.workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow_builder/index.html">aiq.builder.workflow_builder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/cli/index.html">aiq.cli</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/cli_utils/index.html">aiq.cli.cli_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/config_override/index.html">aiq.cli.cli_utils.config_override</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/validation/index.html">aiq.cli.cli_utils.validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/commands/index.html">aiq.cli.commands</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/configure/index.html">aiq.cli.commands.configure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/channel/index.html">aiq.cli.commands.configure.channel</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/configure/index.html">aiq.cli.commands.configure.configure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/evaluate/index.html">aiq.cli.commands.evaluate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/info/index.html">aiq.cli.commands.info</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/info/index.html">aiq.cli.commands.info.info</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_channels/index.html">aiq.cli.commands.info.list_channels</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_components/index.html">aiq.cli.commands.info.list_components</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/registry/index.html">aiq.cli.commands.registry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/publish/index.html">aiq.cli.commands.registry.publish</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/pull/index.html">aiq.cli.commands.registry.pull</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/registry/index.html">aiq.cli.commands.registry.registry</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/remove/index.html">aiq.cli.commands.registry.remove</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/search/index.html">aiq.cli.commands.registry.search</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/start/index.html">aiq.cli.commands.start</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/uninstall/index.html">aiq.cli.commands.uninstall</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/validate/index.html">aiq.cli.commands.validate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/workflow/index.html">aiq.cli.commands.workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow/index.html">aiq.cli.commands.workflow.workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow_commands/index.html">aiq.cli.commands.workflow.workflow_commands</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/entrypoint/index.html">aiq.cli.entrypoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/main/index.html">aiq.cli.main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/register_workflow/index.html">aiq.cli.register_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/type_registry/index.html">aiq.cli.type_registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/data_models/index.html">aiq.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/api_server/index.html">aiq.data_models.api_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/common/index.html">aiq.data_models.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component/index.html">aiq.data_models.component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component_ref/index.html">aiq.data_models.component_ref</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/config/index.html">aiq.data_models.config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/dataset_handler/index.html">aiq.data_models.dataset_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/discovery_metadata/index.html">aiq.data_models.discovery_metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/embedder/index.html">aiq.data_models.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluate/index.html">aiq.data_models.evaluate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluator/index.html">aiq.data_models.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/front_end/index.html">aiq.data_models.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function/index.html">aiq.data_models.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function_dependencies/index.html">aiq.data_models.function_dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/interactive/index.html">aiq.data_models.interactive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/intermediate_step/index.html">aiq.data_models.intermediate_step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/invocation_node/index.html">aiq.data_models.invocation_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/llm/index.html">aiq.data_models.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/logging/index.html">aiq.data_models.logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/memory/index.html">aiq.data_models.memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/profiler/index.html">aiq.data_models.profiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/registry_handler/index.html">aiq.data_models.registry_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/retriever/index.html">aiq.data_models.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/step_adaptor/index.html">aiq.data_models.step_adaptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/streaming/index.html">aiq.data_models.streaming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/swe_bench_model/index.html">aiq.data_models.swe_bench_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/telemetry_exporter/index.html">aiq.data_models.telemetry_exporter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/embedder/index.html">aiq.embedder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/langchain_client/index.html">aiq.embedder.langchain_client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/nim_embedder/index.html">aiq.embedder.nim_embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/register/index.html">aiq.embedder.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/eval/index.html">aiq.eval</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/config/index.html">aiq.eval.config</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/dataset_handler/index.html">aiq.eval.dataset_handler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_downloader/index.html">aiq.eval.dataset_handler.dataset_downloader</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_filter/index.html">aiq.eval.dataset_handler.dataset_filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_handler/index.html">aiq.eval.dataset_handler.dataset_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/evaluate/index.html">aiq.eval.evaluate</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/evaluator/index.html">aiq.eval.evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/evaluator/evaluator_model/index.html">aiq.eval.evaluator.evaluator_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/intermediate_step_adapter/index.html">aiq.eval.intermediate_step_adapter</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/index.html">aiq.eval.rag_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/evaluate/index.html">aiq.eval.rag_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/register/index.html">aiq.eval.rag_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/register/index.html">aiq.eval.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/remote_workflow/index.html">aiq.eval.remote_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/runtime_event_subscriber/index.html">aiq.eval.runtime_event_subscriber</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/index.html">aiq.eval.swe_bench_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/evaluate/index.html">aiq.eval.swe_bench_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/register/index.html">aiq.eval.swe_bench_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/index.html">aiq.eval.trajectory_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/evaluate/index.html">aiq.eval.trajectory_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/register/index.html">aiq.eval.trajectory_evaluator.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/front_ends/index.html">aiq.front_ends</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/console/index.html">aiq.front_ends.console</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_config/index.html">aiq.front_ends.console.console_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_plugin/index.html">aiq.front_ends.console.console_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/register/index.html">aiq.front_ends.console.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/cron/index.html">aiq.front_ends.cron</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/fastapi/index.html">aiq.front_ends.fastapi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_config/index.html">aiq.front_ends.fastapi.fastapi_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin_worker/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin_worker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/intermediate_steps_subscriber/index.html">aiq.front_ends.fastapi.intermediate_steps_subscriber</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/main/index.html">aiq.front_ends.fastapi.main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_handler/index.html">aiq.front_ends.fastapi.message_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_validator/index.html">aiq.front_ends.fastapi.message_validator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/register/index.html">aiq.front_ends.fastapi.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/response_helpers/index.html">aiq.front_ends.fastapi.response_helpers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/step_adaptor/index.html">aiq.front_ends.fastapi.step_adaptor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/websocket/index.html">aiq.front_ends.fastapi.websocket</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/register/index.html">aiq.front_ends.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/simple_base/index.html">aiq.front_ends.simple_base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/simple_base/simple_front_end_plugin_base/index.html">aiq.front_ends.simple_base.simple_front_end_plugin_base</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/llm/index.html">aiq.llm</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/nim_llm/index.html">aiq.llm.nim_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/openai_llm/index.html">aiq.llm.openai_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/register/index.html">aiq.llm.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/llm/utils/index.html">aiq.llm.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/env_config_value/index.html">aiq.llm.utils.env_config_value</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/error/index.html">aiq.llm.utils.error</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/memory/index.html">aiq.memory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/interfaces/index.html">aiq.memory.interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/models/index.html">aiq.memory.models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/observability/index.html">aiq.observability</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/async_otel_listener/index.html">aiq.observability.async_otel_listener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/register/index.html">aiq.observability.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/profiler/index.html">aiq.profiler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/callbacks/index.html">aiq.profiler.callbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/base_callback_class/index.html">aiq.profiler.callbacks.base_callback_class</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/langchain_callback_handler/index.html">aiq.profiler.callbacks.langchain_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/llama_index_callback_handler/index.html">aiq.profiler.callbacks.llama_index_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/semantic_kernel_callback_handler/index.html">aiq.profiler.callbacks.semantic_kernel_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/token_usage_base_model/index.html">aiq.profiler.callbacks.token_usage_base_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/data_frame_row/index.html">aiq.profiler.data_frame_row</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/decorators/index.html">aiq.profiler.decorators</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/index.html">aiq.profiler.forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/config/index.html">aiq.profiler.forecasting.config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/model_trainer/index.html">aiq.profiler.forecasting.model_trainer</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/index.html">aiq.profiler.forecasting.models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/forecasting_base_model/index.html">aiq.profiler.forecasting.models.forecasting_base_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/linear_model/index.html">aiq.profiler.forecasting.models.linear_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/random_forest_regressor/index.html">aiq.profiler.forecasting.models.random_forest_regressor</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/inference_metrics_model/index.html">aiq.profiler.inference_metrics_model</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/index.html">aiq.profiler.inference_optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/nested_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.nested_stack_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/simple_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.simple_stack_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/data_models/index.html">aiq.profiler.inference_optimization.data_models</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/index.html">aiq.profiler.inference_optimization.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/concurrency_spike_analysis/index.html">aiq.profiler.inference_optimization.experimental.concurrency_spike_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/prefix_span_analysis/index.html">aiq.profiler.inference_optimization.experimental.prefix_span_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/llm_metrics/index.html">aiq.profiler.inference_optimization.llm_metrics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/prompt_caching/index.html">aiq.profiler.inference_optimization.prompt_caching</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/token_uniqueness/index.html">aiq.profiler.inference_optimization.token_uniqueness</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/workflow_runtimes/index.html">aiq.profiler.inference_optimization.workflow_runtimes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/intermediate_property_adapter/index.html">aiq.profiler.intermediate_property_adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/profile_runner/index.html">aiq.profiler.profile_runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/utils/index.html">aiq.profiler.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/index.html">aiq.registry_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/local/index.html">aiq.registry_handlers.local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/local_handler/index.html">aiq.registry_handlers.local.local_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/register_local/index.html">aiq.registry_handlers.local.register_local</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/metadata_factory/index.html">aiq.registry_handlers.metadata_factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/package_utils/index.html">aiq.registry_handlers.package_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/index.html">aiq.registry_handlers.pypi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/pypi_handler/index.html">aiq.registry_handlers.pypi.pypi_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/register_pypi/index.html">aiq.registry_handlers.pypi.register_pypi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/register/index.html">aiq.registry_handlers.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/registry_handler_base/index.html">aiq.registry_handlers.registry_handler_base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/rest/index.html">aiq.registry_handlers.rest</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/register_rest/index.html">aiq.registry_handlers.rest.register_rest</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/rest_handler/index.html">aiq.registry_handlers.rest.rest_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/index.html">aiq.registry_handlers.schemas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/headers/index.html">aiq.registry_handlers.schemas.headers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/package/index.html">aiq.registry_handlers.schemas.package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/publish/index.html">aiq.registry_handlers.schemas.publish</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/pull/index.html">aiq.registry_handlers.schemas.pull</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/remove/index.html">aiq.registry_handlers.schemas.remove</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/search/index.html">aiq.registry_handlers.schemas.search</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/status/index.html">aiq.registry_handlers.schemas.status</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/retriever/index.html">aiq.retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/interface/index.html">aiq.retriever.interface</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/milvus/index.html">aiq.retriever.milvus</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/register/index.html">aiq.retriever.milvus.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/retriever/index.html">aiq.retriever.milvus.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/models/index.html">aiq.retriever.models</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/index.html">aiq.retriever.nemo_retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/register/index.html">aiq.retriever.nemo_retriever.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/retriever/index.html">aiq.retriever.nemo_retriever.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/register/index.html">aiq.retriever.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/runtime/index.html">aiq.runtime</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/loader/index.html">aiq.runtime.loader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/runner/index.html">aiq.runtime.runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/session/index.html">aiq.runtime.session</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/settings/index.html">aiq.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/settings/global_settings/index.html">aiq.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/tool/index.html">aiq.tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/index.html">aiq.tool.code_execution</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/code_sandbox/index.html">aiq.tool.code_execution.code_sandbox</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/index.html">aiq.tool.code_execution.local_sandbox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/local_sandbox_server/index.html">aiq.tool.code_execution.local_sandbox.local_sandbox_server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/register/index.html">aiq.tool.code_execution.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/utils/index.html">aiq.tool.code_execution.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/datetime_tools/index.html">aiq.tool.datetime_tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/document_search/index.html">aiq.tool.document_search</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/github_tools/index.html">aiq.tool.github_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_commit/index.html">aiq.tool.github_tools.create_github_commit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_issue/index.html">aiq.tool.github_tools.create_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_pr/index.html">aiq.tool.github_tools.create_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_file/index.html">aiq.tool.github_tools.get_github_file</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_issue/index.html">aiq.tool.github_tools.get_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_pr/index.html">aiq.tool.github_tools.get_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/update_github_issue/index.html">aiq.tool.github_tools.update_github_issue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/mcp/index.html">aiq.tool.mcp</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_client/index.html">aiq.tool.mcp.mcp_client</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_tool/index.html">aiq.tool.mcp.mcp_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/memory_tools/index.html">aiq.tool.memory_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/add_memory_tool/index.html">aiq.tool.memory_tools.add_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/delete_memory_tool/index.html">aiq.tool.memory_tools.delete_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/get_memory_tool/index.html">aiq.tool.memory_tools.get_memory_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/nvidia_rag/index.html">aiq.tool.nvidia_rag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/register/index.html">aiq.tool.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/retriever/index.html">aiq.tool.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/utils/index.html">aiq.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/data_models/index.html">aiq.utils.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/data_models/schema_validator/index.html">aiq.utils.data_models.schema_validator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/debugging_utils/index.html">aiq.utils.debugging_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/exception_handlers/index.html">aiq.utils.exception_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/exception_handlers/schemas/index.html">aiq.utils.exception_handlers.schemas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/io/index.html">aiq.utils.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/io/yaml_tools/index.html">aiq.utils.io.yaml_tools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/metadata_utils/index.html">aiq.utils.metadata_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/producer_consumer_queue/index.html">aiq.utils.producer_consumer_queue</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/index.html">aiq.utils.reactive</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/base/index.html">aiq.utils.reactive.base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observable_base/index.html">aiq.utils.reactive.base.observable_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observer_base/index.html">aiq.utils.reactive.base.observer_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/subject_base/index.html">aiq.utils.reactive.base.subject_base</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observable/index.html">aiq.utils.reactive.observable</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observer/index.html">aiq.utils.reactive.observer</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subject/index.html">aiq.utils.reactive.subject</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subscription/index.html">aiq.utils.reactive.subscription</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/settings/index.html">aiq.utils.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/settings/global_settings/index.html">aiq.utils.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_converter/index.html">aiq.utils.type_converter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_utils/index.html">aiq.utils.type_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/url_utils/index.html">aiq.utils.url_utils</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">NVIDIA AgentIQ Concepts</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Functions</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!--
+SPDX-FileCopyrightText: Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<section id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
+<p>Functions are the main building blocks of AgentIQ and define the logic of your workflow.</p>
+<p>In AgentIQ, functions are a core abstraction that offer type-safe, asynchronous operations with support for both single and streaming outputs. They wrap callable objects (like Python functions or coroutines) and enhance them with:</p>
+<ol class="arabic simple">
+<li><p>Type validation and conversion</p></li>
+<li><p>Schema-based input/output validation via Pydantic models</p></li>
+<li><p>Unified interfaces to improve composability</p></li>
+<li><p>Support for both streaming and non-streaming (single) outputs</p></li>
+</ol>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h2>
+<section id="type-safety">
+<h3>Type Safety<a class="headerlink" href="#type-safety" title="Link to this heading">#</a></h3>
+<p>Functions use Python’s type annotation system to:</p>
+<ul class="simple">
+<li><p>Validate inputs and outputs</p></li>
+<li><p>Convert between different types using converters</p></li>
+<li><p>Generate input and output schemas that provide runtime information about the function’s input and output types</p></li>
+</ul>
+</section>
+<section id="dual-output-modes">
+<h3>Dual Output Modes<a class="headerlink" href="#dual-output-modes" title="Link to this heading">#</a></h3>
+<p>Functions support two output modes:</p>
+<ol class="arabic simple">
+<li><p><strong>Single Output</strong> - For operations that produce a single result</p></li>
+<li><p><strong>Streaming Output</strong> - For operations that produce multiple results</p></li>
+</ol>
+<p>A function can support either or both modes.</p>
+</section>
+<section id="input-and-output-schemas">
+<h3>Input and Output Schemas<a class="headerlink" href="#input-and-output-schemas" title="Link to this heading">#</a></h3>
+<p>Every function has schemas to define the input and output types. Every function has:</p>
+<ul class="simple">
+<li><p>An input schema</p></li>
+<li><p>A streaming output schema (optional)</p></li>
+<li><p>A single output schema (optional)</p></li>
+</ul>
+<p>These schemas are Pydantic BaseModel classes that provide runtime validation and documentation. Pydantic models are used because they provide a way to validate and coerce values at runtime while also providing a way to document the schema properties of the input and output values.</p>
+</section>
+<section id="asynchronous-operation">
+<h3>Asynchronous Operation<a class="headerlink" href="#asynchronous-operation" title="Link to this heading">#</a></h3>
+<p>All function operations are asynchronous. To invoke a function, use one of the following methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> - For single output operations</p></li>
+<li><p><a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.astream" title="aiq.builder.function.Function.astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astream()</span></code></a> - For streaming output operations</p></li>
+</ul>
+<p>Utilizing asynchronous operations allows for better performance and scalability when processing a large number of functions in parallel. In most cases, applications which integrate LLMs are IO bound and can benefit from cooperative multitasking. Asynchronous operations also provide a natural mechanism (via <code class="docutils literal notranslate"><span class="pre">ContextVar</span></code>s) for maintaining application state between multiple function invocations simultaneously.</p>
+</section>
+</section>
+<section id="using-functions">
+<h2>Using Functions<a class="headerlink" href="#using-functions" title="Link to this heading">#</a></h2>
+<p>The following sections describe how to use functions as well as build functions in your application.</p>
+<section id="creating-a-function">
+<h3>Creating a Function<a class="headerlink" href="#creating-a-function" title="Link to this heading">#</a></h3>
+<p>Functions can be created in several ways:</p>
+<ol class="arabic simple">
+<li><p><strong>From a callable</strong>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a function from a callable</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n">MyInputModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MyOutputModel</span><span class="p">:</span>
+    <span class="c1"># Process input_data</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Create a function info</span>
+<span class="n">function_info</span> <span class="o">=</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">from_fn</span><span class="p">(</span>
+    <span class="n">my_function</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My function description&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a lambda function</span>
+<span class="n">my_function</span> <span class="o">=</span> <span class="n">LambdaFunction</span><span class="o">.</span><span class="n">from_info</span><span class="p">(</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">(),</span>
+    <span class="n">info</span><span class="o">=</span><span class="n">function_info</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>By deriving from the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function" title="aiq.builder.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a> class</strong>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyCustomFunction</span><span class="p">(</span><span class="n">Function</span><span class="p">[</span><span class="n">MyInput</span><span class="p">,</span> <span class="n">MyStreamingOutput</span><span class="p">,</span> <span class="n">MySingleOutput</span><span class="p">]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My function description&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_ainvoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MySingleOutput</span><span class="p">:</span>
+        <span class="c1"># Implement single output logic</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_astream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="n">MyStreamingOutput</span><span class="p">]:</span>
+        <span class="c1"># Implement streaming logic</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">process</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">item</span>
+
+<span class="n">my_function</span> <span class="o">=</span> <span class="n">MyCustomFunction</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Both of these methods will result in a function that can be used in the same way. The only difference is that the first method is more concise and the second method is more flexible.</p>
+</section>
+<section id="registering-functions">
+<h3>Registering Functions<a class="headerlink" href="#registering-functions" title="Link to this heading">#</a></h3>
+<section id="function-configuration-object">
+<h4>Function Configuration Object<a class="headerlink" href="#function-configuration-object" title="Link to this heading">#</a></h4>
+<p>To use a function from an AgentIQ configuration file, it must be registered with AgentIQ. Registering a function is done with the <a class="reference internal" href="../api/aiq/cli/register_workflow/index.html#aiq.cli.register_workflow.register_function" title="aiq.cli.register_workflow.register_function"><code class="xref py py-deco docutils literal notranslate"><span class="pre">&#64;~aiq.cli.register_workflow.register_function</span></code></a> decorator. More information about registering components can be found in the <a class="reference internal" href="plugins.html"><span class="std std-doc">Plugin System</span></a> documentation.</p>
+<p>When registering a function, we first need to define the function configuration object. This object is used to configure the function and is passed to the function when it is invoked. Any options that are available to the function must be specified in the configuration object.</p>
+<p>An example of a function configuration object is shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyFunctionConfig</span><span class="p">(</span><span class="n">FunctionBaseConfig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_function&quot;</span><span class="p">):</span>
+    <span class="c1"># Sample configuration options</span>
+    <span class="n">greeting</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">option2</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">option3</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The configuration object must inherit from <a class="reference internal" href="../api/aiq/data_models/function/index.html#aiq.data_models.function.FunctionBaseConfig" title="aiq.data_models.function.FunctionBaseConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionBaseConfig</span></code></a> and must have a <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute. The <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute is used to identify the function in the configuration file.</p>
+<p>Additionally, the configuration object can use Pydantic’s features to provide validation and documentation for each of the options. For example, the following configuration will validate that <code class="docutils literal notranslate"><span class="pre">option2</span></code> is a positive integer, and documents all properties with a description and default value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyFunctionConfig</span><span class="p">(</span><span class="n">FunctionBaseConfig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_function&quot;</span><span class="p">):</span>
+    <span class="n">greeting</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;Hello from my_custom_workflow workflow!&quot;</span><span class="p">,</span>
+                          <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Greeting to respond with&quot;</span><span class="p">)</span>
+    <span class="n">option2</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Another sample option&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">option3</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">,</span>
+                                      <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A dictionary of floats&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This additional metadata will ensure that the configuration object is properly validated and the descriptions can be seen when using <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span></code>.</p>
+</section>
+<section id="function-registration">
+<h4>Function Registration<a class="headerlink" href="#function-registration" title="Link to this heading">#</a></h4>
+<p>With the configuration object defined, there are several options available to register the function:</p>
+<ol class="arabic simple">
+<li><p><strong>Register a function from a callable using <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo" title="aiq.builder.function_info.FunctionInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionInfo</span></code></a></strong>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_response_fn</span><span class="p">(</span><span class="n">input_message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="c1"># Process the input_message and generate output.</span>
+        <span class="c1"># You can access the configuration options here.</span>
+        <span class="n">output_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">greeting</span><span class="si">}</span><span class="s2"> You said: </span><span class="si">{</span><span class="n">input_message</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">output_message</span>
+
+    <span class="c1"># Yield the function info object which will be used to create a function</span>
+    <span class="k">yield</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">from_fn</span><span class="p">(</span>
+        <span class="n">_response_fn</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My function description&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Register a function directly from a callable</strong>:</p></li>
+</ol>
+<p>For simple use cases, you can yield the function directly from the coroutine as shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="c1"># Implement your function logic here</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_response_fn</span><span class="p">(</span><span class="n">input_message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        My function description</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Process the input_message and generate output</span>
+        <span class="n">output_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Hello from my_custom_workflow workflow! You said: </span><span class="si">{</span><span class="n">input_message</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">output_message</span>
+
+    <span class="c1"># Return the function directly</span>
+    <span class="k">yield</span> <span class="n">_response_fn</span>
+</pre></div>
+</div>
+<p>This is functionally equivalent to the first example but is more concise, pulling the description from the docstring.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Register a function derived from <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function" title="aiq.builder.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></strong>:</p></li>
+</ol>
+<p>This method is useful when you need to create a function that is more complex than a simple coroutine. For example, you may need to create a function which derives from another function, or one that needs to share state between invocations. In this case, you can create the function instance directly in the register function and yield it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="c1"># Create a class that derives from Function</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">MyCustomFunction</span><span class="p">(</span><span class="n">Function</span><span class="p">[</span><span class="n">MyInput</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">,</span> <span class="n">MySingleOutput</span><span class="p">]):</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_ainvoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MySingleOutput</span><span class="p">:</span>
+            <span class="c1"># Implement single output logic</span>
+            <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">yield</span> <span class="n">MyCustomFunction</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s important to note that the class is intentionally defined <em>inside</em> of the <code class="docutils literal notranslate"><span class="pre">my_function</span></code> registered coroutine. This is to prevent the class from being created unless the function is going to be instantiated. If the class is defined outside of the coroutine, all of the functions imports will be loaded and the class will be constructed, even if the function is not going to be created. To avoid this, the body of the function must be defined or imported inside of the register function.</p>
+<p>For a more natural syntax, classes can be defined in a separate module and imported into the coroutine as shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="c1"># Import the class inside the coroutine</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">my_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">MyCustomFunction</span>
+
+    <span class="k">yield</span> <span class="n">MyCustomFunction</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This also works for callables as shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="c1"># Import the callable inside the coroutine</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">my_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">my_callable</span>
+
+    <span class="k">yield</span> <span class="n">my_callable</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="initialization-and-cleanup">
+<h3>Initialization and Cleanup<a class="headerlink" href="#initialization-and-cleanup" title="Link to this heading">#</a></h3>
+<p>Its required to use an async context manager coroutine to register a function (it’s not necessary to use <code class="docutils literal notranslate"><span class="pre">&#64;asynccontextmanager</span></code>, since <a class="reference internal" href="../api/aiq/cli/register_workflow/index.html#aiq.cli.register_workflow.register_function" title="aiq.cli.register_workflow.register_function"><code class="xref py py-deco docutils literal notranslate"><span class="pre">&#64;~aiq.cli.register_workflow.register_function</span></code></a> does this for you). This is because the function may need to execute some initialization before construction or cleanup after it is used. For example, if the function needs to load a model, connect to a resource, or download data, this can be done in the register function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="c1"># Perform any initialization logic here such as downloading data</span>
+    <span class="c1"># Async methods can be used in the register function</span>
+    <span class="n">downloaded_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">download_data</span><span class="p">()</span>
+
+    <span class="c1"># You can also use context managers to manage resources</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">get_database_connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">database_connection</span><span class="p">:</span>
+
+        <span class="c1"># Define the function inside of the context manager</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_my_function</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MySingleOutput</span><span class="p">:</span>
+
+            <span class="c1"># Use the database connection with the input data</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">database_connection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">yield</span> <span class="n">my_callable</span>
+
+    <span class="c1"># The database connection will be cleaned up when the context manager is exited</span>
+
+    <span class="c1"># Perform any cleanup logic here</span>
+    <span class="k">await</span> <span class="n">cleanup_resources</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="input-and-output-types">
+<h3>Input and Output Types<a class="headerlink" href="#input-and-output-types" title="Link to this heading">#</a></h3>
+<p>Functions can have any input and output types but are restricted to a single input argument.</p>
+<section id="input-type">
+<h4>Input Type<a class="headerlink" href="#input-type" title="Link to this heading">#</a></h4>
+<p>The input type is determined in one of two ways:</p>
+<ul class="simple">
+<li><p>When deriving from <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function" title="aiq.builder.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a>, the input type is specified as a generic parameter.</p></li>
+<li><p>When creating a function from a callable, the input type is inferred from the callable’s signature.</p>
+<ul>
+<li><p>If the callable is not annotated with types, an error will be raised.</p></li>
+</ul>
+</li>
+</ul>
+<p>For example, the following function has an input type of <code class="docutils literal notranslate"><span class="pre">str</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyFunction</span><span class="p">(</span><span class="n">Function</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">,</span> <span class="n">MySingleOutput</span><span class="p">]):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>And the following function has an input type of <code class="docutils literal notranslate"><span class="pre">MyCustomClass</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_my_function</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n">MyCustomClass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MySingleOutput</span><span class="p">:</span>
+        <span class="c1"># Implement the function logic</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">yield</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">from_fn</span><span class="p">(</span>
+        <span class="n">_my_function</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My function description&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="output-types">
+<h4>Output Types<a class="headerlink" href="#output-types" title="Link to this heading">#</a></h4>
+<p>Functions can have two different output types:</p>
+<ul class="simple">
+<li><p>A single output type</p>
+<ul>
+<li><p>When the function is invoked with the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> method</p></li>
+</ul>
+</li>
+<li><p>A streaming output type</p>
+<ul>
+<li><p>When the function is invoked with the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.astream" title="aiq.builder.function.Function.astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astream()</span></code></a> method</p></li>
+</ul>
+</li>
+</ul>
+<p>The output types are determined in one of two ways (identical to the input types):</p>
+<ul class="simple">
+<li><p>When deriving from <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function" title="aiq.builder.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a>, the output types are specified as generic parameters.</p></li>
+<li><p>When creating from a callable, the output types are determined from the callable’s signature.</p>
+<ul>
+<li><p>If the callable is not annotated with types, an error will be raised.</p></li>
+</ul>
+</li>
+</ul>
+<p>For example, the following function has a single output type of <code class="docutils literal notranslate"><span class="pre">str</span></code>, and no streaming output type:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyFunction</span><span class="p">(</span><span class="n">Function</span><span class="p">[</span><span class="n">MyInput</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>And the following function has a streaming output type of <code class="docutils literal notranslate"><span class="pre">MyStreamingOutput</span></code>, and no single output type:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_my_function</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="n">MyStreamingOutput</span><span class="p">]:</span>
+        <span class="c1"># Implement the function logic</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">MyStreamingOutput</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">from_fn</span><span class="p">(</span>
+        <span class="n">_my_function</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My function description&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="functions-with-multiple-arguments">
+<h4>Functions with Multiple Arguments<a class="headerlink" href="#functions-with-multiple-arguments" title="Link to this heading">#</a></h4>
+<p>It is possible to create a function with a callable that has multiple arguments. When a function with multiple arguments is passed to <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.from_fn" title="aiq.builder.function_info.FunctionInfo.from_fn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_fn()</span></code></a>, the function will be wrapped with a lambda function which takes a single argument and passes it to the original function. For example, the following function takes two arguments, <code class="docutils literal notranslate"><span class="pre">input_data</span></code> and <code class="docutils literal notranslate"><span class="pre">repeat</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">multi_arg_function</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">repeat</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="o">*</span> <span class="n">repeat</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_data</span><span class="p">]</span>
+
+<span class="c1"># Create a function info</span>
+<span class="n">function_info</span> <span class="o">=</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">from_fn</span><span class="p">(</span><span class="n">multi_arg_function</span><span class="p">)</span>
+
+<span class="c1"># Print the input schema</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">function_info</span><span class="o">.</span><span class="n">input_schema</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will result in the following input schema:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MultiArgFunctionInput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">input_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="n">repeat</span><span class="p">:</span> <span class="nb">int</span>
+</pre></div>
+</div>
+<p>To invoke the function, input can be passed as a dictionary to the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> method as shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">function</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">({</span><span class="s2">&quot;input_data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;repeat&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="supporting-streaming-and-single-outputs-simultaneously">
+<h4>Supporting Streaming and Single Outputs Simultaneously<a class="headerlink" href="#supporting-streaming-and-single-outputs-simultaneously" title="Link to this heading">#</a></h4>
+<p>It is possible to create a function that supports both streaming and single outputs. When deriving from <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function" title="aiq.builder.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a> implement both <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function._ainvoke" title="aiq.builder.function.Function._ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_ainvoke()</span></code></a> and <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function._astream" title="aiq.builder.function.Function._astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_astream()</span></code></a> methods. For example, the following function has a single output type of <code class="docutils literal notranslate"><span class="pre">MySingleOutput</span></code>, and a streaming output type of <code class="docutils literal notranslate"><span class="pre">MyStreamingOutput</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyFunction</span><span class="p">(</span><span class="n">Function</span><span class="p">[</span><span class="n">MyInput</span><span class="p">,</span> <span class="n">MySingleOutput</span><span class="p">,</span> <span class="n">MyStreamingOutput</span><span class="p">]):</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_ainvoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MySingleOutput</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MySingleOutput</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_astream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="n">MyStreamingOutput</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">MyStreamingOutput</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarly this can be accomplished using <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.create" title="aiq.builder.function_info.FunctionInfo.create"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create()</span></code></a> which is a more verbose version of <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.from_fn" title="aiq.builder.function_info.FunctionInfo.from_fn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_fn()</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_ainvoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MySingleOutput</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">MySingleOutput</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_astream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="n">MyStreamingOutput</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">MyStreamingOutput</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+
+<span class="n">function_info</span> <span class="o">=</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">single_fn</span><span class="o">=</span><span class="n">my_ainvoke</span><span class="p">,</span>
+    <span class="n">stream_fn</span><span class="o">=</span><span class="n">my_astream</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">function_info</span><span class="o">.</span><span class="n">single_output_type</span> <span class="o">==</span> <span class="n">MySingleOutput</span>
+<span class="k">assert</span> <span class="n">function_info</span><span class="o">.</span><span class="n">stream_output_type</span> <span class="o">==</span> <span class="n">MyStreamingOutput</span>
+</pre></div>
+</div>
+<p>Finally, when using <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.create" title="aiq.builder.function_info.FunctionInfo.create"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create()</span></code></a> a conversion function can be provided to convert the single output to a streaming output, and a streaming output into a single output. This is useful when converting between streaming and single outputs is trivial and defining both methods would be overkill. For example, the following function converts a streaming output to a single output by joining the items with a comma:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a conversion function to convert a streaming output to a single output</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_streaming_to_single</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Define a streaming function</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_streaming_fn</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">item</span>
+
+<span class="c1"># Create a function info</span>
+<span class="n">function_info</span> <span class="o">=</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">single_fn</span><span class="o">=</span><span class="n">my_ainvoke</span><span class="p">,</span>
+    <span class="n">stream_to_single_fn</span><span class="o">=</span><span class="n">convert_streaming_to_single</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="overriding-the-input-and-output-schemas">
+<h4>Overriding the Input and Output Schemas<a class="headerlink" href="#overriding-the-input-and-output-schemas" title="Link to this heading">#</a></h4>
+<p>It is possible to override the input and output schemas when creating a function from a callable. This is useful when it’s not possible to annotate the input and output types of the callable to add validation or documentation. For example, the following function accepts a simple string and returns a string but we provide a custom input schema to add validation and documentation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_my_function</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="c1"># Implement the function logic</span>
+        <span class="k">return</span> <span class="n">message</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">MyInputSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;This will be the message that is returned&quot;</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">from_fn</span><span class="p">(</span>
+        <span class="n">_my_function</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My function description&quot;</span><span class="p">,</span>
+        <span class="n">input_schema</span><span class="o">=</span><span class="n">MyInputSchema</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>When invoking the function with invalid input, the function will raise a validation error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">function</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="s2">&quot;short&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output schemas can also be overridden in a similar manner but for different purposes. Generally, output schemas are mainly used for adding documentation to the output of the function.</p>
+</section>
+</section>
+<section id="instantiating-functions">
+<h3>Instantiating Functions<a class="headerlink" href="#instantiating-functions" title="Link to this heading">#</a></h3>
+<p>Once a function is registered, it can be instantiated using the <a class="reference internal" href="../api/aiq/builder/workflow_builder/index.html#aiq.builder.workflow_builder.WorkflowBuilder" title="aiq.builder.workflow_builder.WorkflowBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkflowBuilder</span></code></a> class. The <code class="docutils literal notranslate"><span class="pre">WorkflowBuilder</span></code> class is used to create and manage all components in an AgentIQ workflow. When calling <a class="reference internal" href="../api/aiq/builder/workflow_builder/index.html#aiq.builder.workflow_builder.WorkflowBuilder.add_function" title="aiq.builder.workflow_builder.WorkflowBuilder.add_function"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_function()</span></code></a>, which function to create is determined by the type of the configuration object. The builder will match the configuration object type to the type used in the <a class="reference internal" href="../api/aiq/cli/register_workflow/index.html#aiq.cli.register_workflow.register_function" title="aiq.cli.register_workflow.register_function"><code class="xref py py-deco docutils literal notranslate"><span class="pre">&#64;~aiq.cli.register_workflow.register_function</span></code></a> decorator.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MyFunctionConfig</span><span class="p">(</span><span class="n">FunctionBaseConfig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_function_id&quot;</span><span class="p">):</span>
+    <span class="c1"># Sample configuration options</span>
+    <span class="o">...</span>
+
+<span class="c1"># Register the function</span>
+<span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="c1"># Create a builder</span>
+<span class="k">async</span> <span class="k">with</span> <span class="n">WorkflowBuilder</span><span class="p">()</span> <span class="k">as</span> <span class="n">builder</span><span class="p">:</span>
+
+    <span class="c1"># Add the function to the builder. This will create an instance of my_function</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="k">await</span> <span class="n">builder</span><span class="o">.</span><span class="n">add_function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_function&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">())</span>
+
+    <span class="c1"># Use the function directly</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">function</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+
+<span class="c1"># The function will be automatically cleaned up when the builder is exited</span>
+</pre></div>
+</div>
+</section>
+<section id="invoking-functions">
+<h3>Invoking Functions<a class="headerlink" href="#invoking-functions" title="Link to this heading">#</a></h3>
+<p>Functions can be invoked in two ways:</p>
+<ol class="arabic simple">
+<li><p><strong>For single outputs</strong>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a single result</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">function</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>For streaming outputs</strong>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process streaming results</span>
+<span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">function</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="n">input_data</span><span class="p">):</span>
+    <span class="c1"># Use the streaming result</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the function only has a single output, using the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.astream" title="aiq.builder.function.Function.astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astream()</span></code></a> method will result in an error. Likewise, if the function only has a streaming output, using the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> method will result in an error. It’s possible to check which output types a function supports using the <code class="xref py py-attr docutils literal notranslate"><span class="pre">has_single_output</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">has_streaming_output</span></code> properties.</p>
+</section>
+<section id="function-composition">
+<h3>Function Composition<a class="headerlink" href="#function-composition" title="Link to this heading">#</a></h3>
+<p>Functions can call other functions allowing for complex workflows to be created. To accomplish this, we can use the <a class="reference internal" href="../api/aiq/builder/workflow_builder/index.html#aiq.builder.workflow_builder.WorkflowBuilder" title="aiq.builder.workflow_builder.WorkflowBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkflowBuilder</span></code></a> class to get a reference to another function while constructing the current function. For example, the following function composes two other functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyCompositeFunctionConfig</span><span class="p">(</span><span class="n">FunctionBaseConfig</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_composite_function&quot;</span><span class="p">):</span>
+    <span class="n">other_function_name1</span><span class="p">:</span> <span class="n">FunctionRef</span>
+    <span class="n">other_function_name2</span><span class="p">:</span> <span class="n">FunctionRef</span>
+
+<span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyCompositeFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyCompositeFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="c1"># Get a reference to another function</span>
+    <span class="n">other_function1</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_function</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">other_function_name1</span><span class="p">)</span>
+    <span class="n">other_function2</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_function</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">other_function_name2</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_my_function</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+        <span class="c1"># First call other_function1</span>
+        <span class="n">result1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">other_function1</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="c1"># Then call other_function2</span>
+        <span class="n">result2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">other_function2</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+
+        <span class="c1"># Return the final result</span>
+        <span class="k">return</span> <span class="n">result2</span>
+
+    <span class="k">yield</span> <span class="n">_my_function</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We annotate function names in the configuration object using <a class="reference internal" href="../api/aiq/data_models/component_ref/index.html#aiq.data_models.component_ref.FunctionRef" title="aiq.data_models.component_ref.FunctionRef"><code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionRef</span></code></a> which is equivalent to <code class="docutils literal notranslate"><span class="pre">str</span></code> but indicates that the function name is a reference to another function. When a function is referenced in a configuration object in this way, the builder system will ensure that the function is registered before it is used.</p>
+</div>
+</section>
+<section id="type-conversion">
+<h3>Type Conversion<a class="headerlink" href="#type-conversion" title="Link to this heading">#</a></h3>
+<p>When working with functions, it is not guaranteed that the input and output types will be the same as the types specified in the function definition. To make this easier, functions support type conversion which can convert both inputs and outputs to the necessary type at runtime.</p>
+<p>To convert a value to a different type, use the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.convert" title="aiq.builder.function.Function.convert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert()</span></code></a> method where the first argument is the value to convert and the second argument, <code class="docutils literal notranslate"><span class="pre">to_type</span></code>, is the type to convert to.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert between types</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">to_type</span><span class="o">=</span><span class="n">TargetType</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.convert" title="aiq.builder.function.Function.convert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert()</span></code></a> method is used internally by the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> and <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.astream" title="aiq.builder.function.Function.astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astream()</span></code></a> methods to convert the input and output values to the necessary types. When passing a value to the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> or <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.astream" title="aiq.builder.function.Function.astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astream()</span></code></a> methods, the value will be converted to the type specified by the function’s input type. The <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> and <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.astream" title="aiq.builder.function.Function.astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astream()</span></code></a> methods effectively do the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ainvoke</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="c1"># Effectively do the following</span>
+    <span class="n">converted_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">to_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ainvoke</span><span class="p">(</span><span class="n">converted_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the output is generated, the output type can be converted before it is returned using the <code class="docutils literal notranslate"><span class="pre">to_type</span></code> property on <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.ainvoke" title="aiq.builder.function.Function.ainvoke"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ainvoke()</span></code></a> and <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.astream" title="aiq.builder.function.Function.astream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astream()</span></code></a> methods. The <code class="docutils literal notranslate"><span class="pre">to_type</span></code> property is a type hint that can be used to convert the output to a specific type using the <a class="reference internal" href="../api/aiq/builder/function/index.html#aiq.builder.function.Function.convert" title="aiq.builder.function.Function.convert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert()</span></code></a> method. This is equivalent to the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ainvoke</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="n">to_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">):</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ainvoke</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">to_type</span><span class="o">=</span><span class="n">to_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="adding-custom-converters">
+<h4>Adding Custom Converters<a class="headerlink" href="#adding-custom-converters" title="Link to this heading">#</a></h4>
+<p>Functions support custom type converters for complex conversion scenarios. To add a custom converter to a function, provide a list of converter callables to the <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.from_fn" title="aiq.builder.function_info.FunctionInfo.from_fn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_fn()</span></code></a> or <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.create" title="aiq.builder.function_info.FunctionInfo.create"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create()</span></code></a> methods when creating a function. A converter callable is any python function which takes a single value and returns a converted value. These functions must be annotated with the type it will convert from and the type it will convert to.</p>
+<p>For example, the following converter will convert an <code class="docutils literal notranslate"><span class="pre">int</span></code> to a <code class="docutils literal notranslate"><span class="pre">str</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_converter</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This converter can then be passed to the <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.from_fn" title="aiq.builder.function_info.FunctionInfo.from_fn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_fn()</span></code></a> or <a class="reference internal" href="../api/aiq/builder/function_info/index.html#aiq.builder.function_info.FunctionInfo.create" title="aiq.builder.function_info.FunctionInfo.create"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create()</span></code></a> methods when registering the function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@register_function</span><span class="p">(</span><span class="n">config_type</span><span class="o">=</span><span class="n">MyFunctionConfig</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">MyFunctionConfig</span><span class="p">,</span> <span class="n">builder</span><span class="p">:</span> <span class="n">Builder</span><span class="p">):</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_my_function</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n">MyInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="n">MyStreamingOutput</span><span class="p">]:</span>
+        <span class="c1"># Implement the function logic</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">MyStreamingOutput</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_str_to_myinput</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MyInput</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MyInput</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="n">FunctionInfo</span><span class="o">.</span><span class="n">from_fn</span><span class="p">(</span>
+        <span class="n">_my_function</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;My function description&quot;</span><span class="p">,</span>
+        <span class="n">converters</span><span class="o">=</span><span class="p">[</span><span class="n">convert_str_to_myinput</span><span class="p">,</span> <span class="n">my_converter</span><span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Every function has its own set of converters and are independent of the converters used by other functions. This allows for functions to convert between common types such as <code class="docutils literal notranslate"><span class="pre">str</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">dict</span></code> or <code class="docutils literal notranslate"><span class="pre">int</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">float</span></code> without breaking the type safety of other functions.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">NVIDIA AgentIQ Concepts</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="workflow-configuration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Workflow Configuration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-safety">Type Safety</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-output-modes">Dual Output Modes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-output-schemas">Input and Output Schemas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asynchronous-operation">Asynchronous Operation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-functions">Using Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-function">Creating a Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-functions">Registering Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#function-configuration-object">Function Configuration Object</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#function-registration">Function Registration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-and-cleanup">Initialization and Cleanup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-output-types">Input and Output Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-type">Input Type</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output-types">Output Types</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-multiple-arguments">Functions with Multiple Arguments</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#supporting-streaming-and-single-outputs-simultaneously">Supporting Streaming and Single Outputs Simultaneously</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-input-and-output-schemas">Overriding the Input and Output Schemas</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiating-functions">Instantiating Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invoking-functions">Invoking Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-composition">Function Composition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-conversion">Type Conversion</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-custom-converters">Adding Custom Converters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025, NVIDIA.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+<div class="extra_footer">
+  
+  
+    <script type="text/javascript">if (typeof _satellite !== "undefined") {_satellite.pageBottom();}</script>
+    
+  
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  <script type="text/javascript">_satellite.pageBottom();</script>
+</body>
+</html>

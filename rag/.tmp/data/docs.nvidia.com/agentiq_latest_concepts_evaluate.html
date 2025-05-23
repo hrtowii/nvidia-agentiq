@@ -1,0 +1,1248 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Evaluating NVIDIA AgentIQ Workflows Details &#8212; AgentIQ</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=d0aa047a" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=5ceeb459"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/evaluate';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NVIDIA AgentIQ Memory Module" href="memory.html" />
+    <link rel="prev" title="Profiling and Performance Monitoring of NVIDIA AgentIQ Workflows" href="profiler.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+
+
+    <script src="https://assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js" ></script>
+    
+
+
+  <link rel="stylesheet" href="/common-libs/common.css">
+<script src="/common-libs/common.js"></script>
+<script src="//assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/index.html">Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/why-agentiq.html">Why Use NVIDIA AgentIQ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/install.html">Install AgentIQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/get-started.html">Get Started</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/create-customize-workflows.html">Create and Customize Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/sharing-workflows-and-tools.html">Share Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/evaluate.html">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/custom-evaluator.html">Custom Evaluator</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../guides/observe-workflow-with-phoenix.html">Observing a Workflow with Phoenix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/using-agentiq-ui-and-server.html">Use User Interface and API Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/profiler.html">Profile a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/adding-an-llm-provider.html">Adding an LLM Provider</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow-configuration.html">Workflow Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiler.html">Profile and Monitor Performance</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observability.html">Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html">Plugins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../components/index.html">Components</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../components/react-agent.html">ReAct Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/reasoning-agent.html">Reasoning Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/tool-calling-agent.html">Tool Calling Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/retriever.html">Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/mcp.html">Model Context Protocol (MCP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/code-execution.html">Code Execution Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/contributing.html">Contributing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../references/index.html">References</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/interactive-models.html">Interactive Models Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/websockets.html">WebSocket Message Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/aiq/index.html">aiq</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/agent/index.html">aiq.agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/base/index.html">aiq.agent.base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/react_agent/index.html">aiq.agent.react_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/agent/index.html">aiq.agent.react_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/output_parser/index.html">aiq.agent.react_agent.output_parser</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/prompt/index.html">aiq.agent.react_agent.prompt</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/register/index.html">aiq.agent.react_agent.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/index.html">aiq.agent.reasoning_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/reasoning_agent/index.html">aiq.agent.reasoning_agent.reasoning_agent</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/register/index.html">aiq.agent.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/index.html">aiq.agent.tool_calling_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/agent/index.html">aiq.agent.tool_calling_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/register/index.html">aiq.agent.tool_calling_agent.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/builder/index.html">aiq.builder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/builder/index.html">aiq.builder.builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/component_utils/index.html">aiq.builder.component_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/context/index.html">aiq.builder.context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/embedder/index.html">aiq.builder.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/eval_builder/index.html">aiq.builder.eval_builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/evaluator/index.html">aiq.builder.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/framework_enum/index.html">aiq.builder.framework_enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/front_end/index.html">aiq.builder.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function/index.html">aiq.builder.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_base/index.html">aiq.builder.function_base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_info/index.html">aiq.builder.function_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/intermediate_step_manager/index.html">aiq.builder.intermediate_step_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/llm/index.html">aiq.builder.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/retriever/index.html">aiq.builder.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/user_interaction_manager/index.html">aiq.builder.user_interaction_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow/index.html">aiq.builder.workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow_builder/index.html">aiq.builder.workflow_builder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/cli/index.html">aiq.cli</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/cli_utils/index.html">aiq.cli.cli_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/config_override/index.html">aiq.cli.cli_utils.config_override</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/validation/index.html">aiq.cli.cli_utils.validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/commands/index.html">aiq.cli.commands</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/configure/index.html">aiq.cli.commands.configure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/channel/index.html">aiq.cli.commands.configure.channel</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/configure/index.html">aiq.cli.commands.configure.configure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/evaluate/index.html">aiq.cli.commands.evaluate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/info/index.html">aiq.cli.commands.info</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/info/index.html">aiq.cli.commands.info.info</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_channels/index.html">aiq.cli.commands.info.list_channels</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_components/index.html">aiq.cli.commands.info.list_components</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/registry/index.html">aiq.cli.commands.registry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/publish/index.html">aiq.cli.commands.registry.publish</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/pull/index.html">aiq.cli.commands.registry.pull</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/registry/index.html">aiq.cli.commands.registry.registry</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/remove/index.html">aiq.cli.commands.registry.remove</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/search/index.html">aiq.cli.commands.registry.search</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/start/index.html">aiq.cli.commands.start</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/uninstall/index.html">aiq.cli.commands.uninstall</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/validate/index.html">aiq.cli.commands.validate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/workflow/index.html">aiq.cli.commands.workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow/index.html">aiq.cli.commands.workflow.workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow_commands/index.html">aiq.cli.commands.workflow.workflow_commands</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/entrypoint/index.html">aiq.cli.entrypoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/main/index.html">aiq.cli.main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/register_workflow/index.html">aiq.cli.register_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/type_registry/index.html">aiq.cli.type_registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/data_models/index.html">aiq.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/api_server/index.html">aiq.data_models.api_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/common/index.html">aiq.data_models.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component/index.html">aiq.data_models.component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component_ref/index.html">aiq.data_models.component_ref</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/config/index.html">aiq.data_models.config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/dataset_handler/index.html">aiq.data_models.dataset_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/discovery_metadata/index.html">aiq.data_models.discovery_metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/embedder/index.html">aiq.data_models.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluate/index.html">aiq.data_models.evaluate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluator/index.html">aiq.data_models.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/front_end/index.html">aiq.data_models.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function/index.html">aiq.data_models.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function_dependencies/index.html">aiq.data_models.function_dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/interactive/index.html">aiq.data_models.interactive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/intermediate_step/index.html">aiq.data_models.intermediate_step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/invocation_node/index.html">aiq.data_models.invocation_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/llm/index.html">aiq.data_models.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/logging/index.html">aiq.data_models.logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/memory/index.html">aiq.data_models.memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/profiler/index.html">aiq.data_models.profiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/registry_handler/index.html">aiq.data_models.registry_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/retriever/index.html">aiq.data_models.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/step_adaptor/index.html">aiq.data_models.step_adaptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/streaming/index.html">aiq.data_models.streaming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/swe_bench_model/index.html">aiq.data_models.swe_bench_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/telemetry_exporter/index.html">aiq.data_models.telemetry_exporter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/embedder/index.html">aiq.embedder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/langchain_client/index.html">aiq.embedder.langchain_client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/nim_embedder/index.html">aiq.embedder.nim_embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/register/index.html">aiq.embedder.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/eval/index.html">aiq.eval</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/config/index.html">aiq.eval.config</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/dataset_handler/index.html">aiq.eval.dataset_handler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_downloader/index.html">aiq.eval.dataset_handler.dataset_downloader</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_filter/index.html">aiq.eval.dataset_handler.dataset_filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_handler/index.html">aiq.eval.dataset_handler.dataset_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/evaluate/index.html">aiq.eval.evaluate</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/evaluator/index.html">aiq.eval.evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/evaluator/evaluator_model/index.html">aiq.eval.evaluator.evaluator_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/intermediate_step_adapter/index.html">aiq.eval.intermediate_step_adapter</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/index.html">aiq.eval.rag_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/evaluate/index.html">aiq.eval.rag_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/register/index.html">aiq.eval.rag_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/register/index.html">aiq.eval.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/remote_workflow/index.html">aiq.eval.remote_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/runtime_event_subscriber/index.html">aiq.eval.runtime_event_subscriber</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/index.html">aiq.eval.swe_bench_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/evaluate/index.html">aiq.eval.swe_bench_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/register/index.html">aiq.eval.swe_bench_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/index.html">aiq.eval.trajectory_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/evaluate/index.html">aiq.eval.trajectory_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/register/index.html">aiq.eval.trajectory_evaluator.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/front_ends/index.html">aiq.front_ends</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/console/index.html">aiq.front_ends.console</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_config/index.html">aiq.front_ends.console.console_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_plugin/index.html">aiq.front_ends.console.console_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/register/index.html">aiq.front_ends.console.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/cron/index.html">aiq.front_ends.cron</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/fastapi/index.html">aiq.front_ends.fastapi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_config/index.html">aiq.front_ends.fastapi.fastapi_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin_worker/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin_worker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/intermediate_steps_subscriber/index.html">aiq.front_ends.fastapi.intermediate_steps_subscriber</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/main/index.html">aiq.front_ends.fastapi.main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_handler/index.html">aiq.front_ends.fastapi.message_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_validator/index.html">aiq.front_ends.fastapi.message_validator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/register/index.html">aiq.front_ends.fastapi.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/response_helpers/index.html">aiq.front_ends.fastapi.response_helpers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/step_adaptor/index.html">aiq.front_ends.fastapi.step_adaptor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/websocket/index.html">aiq.front_ends.fastapi.websocket</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/register/index.html">aiq.front_ends.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/simple_base/index.html">aiq.front_ends.simple_base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/simple_base/simple_front_end_plugin_base/index.html">aiq.front_ends.simple_base.simple_front_end_plugin_base</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/llm/index.html">aiq.llm</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/nim_llm/index.html">aiq.llm.nim_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/openai_llm/index.html">aiq.llm.openai_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/register/index.html">aiq.llm.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/llm/utils/index.html">aiq.llm.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/env_config_value/index.html">aiq.llm.utils.env_config_value</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/error/index.html">aiq.llm.utils.error</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/memory/index.html">aiq.memory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/interfaces/index.html">aiq.memory.interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/models/index.html">aiq.memory.models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/observability/index.html">aiq.observability</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/async_otel_listener/index.html">aiq.observability.async_otel_listener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/register/index.html">aiq.observability.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/profiler/index.html">aiq.profiler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/callbacks/index.html">aiq.profiler.callbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/base_callback_class/index.html">aiq.profiler.callbacks.base_callback_class</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/langchain_callback_handler/index.html">aiq.profiler.callbacks.langchain_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/llama_index_callback_handler/index.html">aiq.profiler.callbacks.llama_index_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/semantic_kernel_callback_handler/index.html">aiq.profiler.callbacks.semantic_kernel_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/token_usage_base_model/index.html">aiq.profiler.callbacks.token_usage_base_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/data_frame_row/index.html">aiq.profiler.data_frame_row</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/decorators/index.html">aiq.profiler.decorators</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/index.html">aiq.profiler.forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/config/index.html">aiq.profiler.forecasting.config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/model_trainer/index.html">aiq.profiler.forecasting.model_trainer</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/index.html">aiq.profiler.forecasting.models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/forecasting_base_model/index.html">aiq.profiler.forecasting.models.forecasting_base_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/linear_model/index.html">aiq.profiler.forecasting.models.linear_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/random_forest_regressor/index.html">aiq.profiler.forecasting.models.random_forest_regressor</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/inference_metrics_model/index.html">aiq.profiler.inference_metrics_model</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/index.html">aiq.profiler.inference_optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/nested_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.nested_stack_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/simple_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.simple_stack_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/data_models/index.html">aiq.profiler.inference_optimization.data_models</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/index.html">aiq.profiler.inference_optimization.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/concurrency_spike_analysis/index.html">aiq.profiler.inference_optimization.experimental.concurrency_spike_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/prefix_span_analysis/index.html">aiq.profiler.inference_optimization.experimental.prefix_span_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/llm_metrics/index.html">aiq.profiler.inference_optimization.llm_metrics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/prompt_caching/index.html">aiq.profiler.inference_optimization.prompt_caching</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/token_uniqueness/index.html">aiq.profiler.inference_optimization.token_uniqueness</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/workflow_runtimes/index.html">aiq.profiler.inference_optimization.workflow_runtimes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/intermediate_property_adapter/index.html">aiq.profiler.intermediate_property_adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/profile_runner/index.html">aiq.profiler.profile_runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/utils/index.html">aiq.profiler.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/index.html">aiq.registry_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/local/index.html">aiq.registry_handlers.local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/local_handler/index.html">aiq.registry_handlers.local.local_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/register_local/index.html">aiq.registry_handlers.local.register_local</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/metadata_factory/index.html">aiq.registry_handlers.metadata_factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/package_utils/index.html">aiq.registry_handlers.package_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/index.html">aiq.registry_handlers.pypi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/pypi_handler/index.html">aiq.registry_handlers.pypi.pypi_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/register_pypi/index.html">aiq.registry_handlers.pypi.register_pypi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/register/index.html">aiq.registry_handlers.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/registry_handler_base/index.html">aiq.registry_handlers.registry_handler_base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/rest/index.html">aiq.registry_handlers.rest</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/register_rest/index.html">aiq.registry_handlers.rest.register_rest</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/rest_handler/index.html">aiq.registry_handlers.rest.rest_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/index.html">aiq.registry_handlers.schemas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/headers/index.html">aiq.registry_handlers.schemas.headers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/package/index.html">aiq.registry_handlers.schemas.package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/publish/index.html">aiq.registry_handlers.schemas.publish</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/pull/index.html">aiq.registry_handlers.schemas.pull</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/remove/index.html">aiq.registry_handlers.schemas.remove</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/search/index.html">aiq.registry_handlers.schemas.search</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/status/index.html">aiq.registry_handlers.schemas.status</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/retriever/index.html">aiq.retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/interface/index.html">aiq.retriever.interface</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/milvus/index.html">aiq.retriever.milvus</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/register/index.html">aiq.retriever.milvus.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/retriever/index.html">aiq.retriever.milvus.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/models/index.html">aiq.retriever.models</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/index.html">aiq.retriever.nemo_retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/register/index.html">aiq.retriever.nemo_retriever.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/retriever/index.html">aiq.retriever.nemo_retriever.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/register/index.html">aiq.retriever.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/runtime/index.html">aiq.runtime</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/loader/index.html">aiq.runtime.loader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/runner/index.html">aiq.runtime.runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/session/index.html">aiq.runtime.session</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/settings/index.html">aiq.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/settings/global_settings/index.html">aiq.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/tool/index.html">aiq.tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/index.html">aiq.tool.code_execution</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/code_sandbox/index.html">aiq.tool.code_execution.code_sandbox</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/index.html">aiq.tool.code_execution.local_sandbox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/local_sandbox_server/index.html">aiq.tool.code_execution.local_sandbox.local_sandbox_server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/register/index.html">aiq.tool.code_execution.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/utils/index.html">aiq.tool.code_execution.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/datetime_tools/index.html">aiq.tool.datetime_tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/document_search/index.html">aiq.tool.document_search</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/github_tools/index.html">aiq.tool.github_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_commit/index.html">aiq.tool.github_tools.create_github_commit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_issue/index.html">aiq.tool.github_tools.create_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_pr/index.html">aiq.tool.github_tools.create_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_file/index.html">aiq.tool.github_tools.get_github_file</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_issue/index.html">aiq.tool.github_tools.get_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_pr/index.html">aiq.tool.github_tools.get_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/update_github_issue/index.html">aiq.tool.github_tools.update_github_issue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/mcp/index.html">aiq.tool.mcp</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_client/index.html">aiq.tool.mcp.mcp_client</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_tool/index.html">aiq.tool.mcp.mcp_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/memory_tools/index.html">aiq.tool.memory_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/add_memory_tool/index.html">aiq.tool.memory_tools.add_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/delete_memory_tool/index.html">aiq.tool.memory_tools.delete_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/get_memory_tool/index.html">aiq.tool.memory_tools.get_memory_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/nvidia_rag/index.html">aiq.tool.nvidia_rag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/register/index.html">aiq.tool.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/retriever/index.html">aiq.tool.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/utils/index.html">aiq.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/data_models/index.html">aiq.utils.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/data_models/schema_validator/index.html">aiq.utils.data_models.schema_validator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/debugging_utils/index.html">aiq.utils.debugging_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/exception_handlers/index.html">aiq.utils.exception_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/exception_handlers/schemas/index.html">aiq.utils.exception_handlers.schemas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/io/index.html">aiq.utils.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/io/yaml_tools/index.html">aiq.utils.io.yaml_tools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/metadata_utils/index.html">aiq.utils.metadata_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/producer_consumer_queue/index.html">aiq.utils.producer_consumer_queue</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/index.html">aiq.utils.reactive</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/base/index.html">aiq.utils.reactive.base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observable_base/index.html">aiq.utils.reactive.base.observable_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observer_base/index.html">aiq.utils.reactive.base.observer_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/subject_base/index.html">aiq.utils.reactive.base.subject_base</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observable/index.html">aiq.utils.reactive.observable</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observer/index.html">aiq.utils.reactive.observer</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subject/index.html">aiq.utils.reactive.subject</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subscription/index.html">aiq.utils.reactive.subscription</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/settings/index.html">aiq.utils.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/settings/global_settings/index.html">aiq.utils.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_converter/index.html">aiq.utils.type_converter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_utils/index.html">aiq.utils.type_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/url_utils/index.html">aiq.utils.url_utils</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">NVIDIA AgentIQ Concepts</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Evaluating NVIDIA AgentIQ Workflows Details</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!--
+SPDX-FileCopyrightText: Copyright (c) 2024-2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<section id="evaluating-nvidia-agentiq-workflows-details">
+<h1>Evaluating NVIDIA AgentIQ Workflows Details<a class="headerlink" href="#evaluating-nvidia-agentiq-workflows-details" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended that the <a class="reference internal" href="../guides/evaluate.html"><span class="std std-doc">Evaluating AgentIQ Workflows</span></a> guide be read before proceeding with this detailed documentation.</p>
+</div>
+<p>AgentIQ provides a set of evaluators to run and evaluate the AgentIQ workflows. In addition to the built-in evaluators, AgentIQ provides a plugin system to add custom evaluators.</p>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--config_file<span class="o">=</span>examples/simple/configs/eval_config.yml
+</pre></div>
+</div>
+<section id="using-datasets">
+<h2>Using Datasets<a class="headerlink" href="#using-datasets" title="Link to this heading">#</a></h2>
+<p>Run and evaluate the workflow on a specified dataset. The dataset files types are <code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">jsonl</span></code>, <code class="docutils literal notranslate"><span class="pre">csv</span></code>, <code class="docutils literal notranslate"><span class="pre">xls</span></code>, or <code class="docutils literal notranslate"><span class="pre">parquet</span></code>.</p>
+<p>Download and use datasets provided by AgentIQ examples by running the following.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>fetch
+git<span class="w"> </span>lfs<span class="w"> </span>pull
+</pre></div>
+</div>
+<p>The dataset used for evaluation is specified in the configuration file  via <code class="docutils literal notranslate"><span class="pre">eval.general.dataset</span></code>. For example, to use the <code class="docutils literal notranslate"><span class="pre">langsmith.json</span></code> dataset, the configuration is as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">      </span><span class="nt">file_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/simple/data/langsmith.json</span>
+</pre></div>
+</div>
+<section id="dataset-format">
+<h3>Dataset Format<a class="headerlink" href="#dataset-format" title="Link to this heading">#</a></h3>
+<p>Each dataset file contains a list of records. Each record is a dictionary with keys as the column names and values as the data. For example, a sample record in a <code class="docutils literal notranslate"><span class="pre">json</span></code> dataset file is as follows:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;q_1&quot;</span><span class="p">,</span>
+<span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is langsmith&quot;</span><span class="p">,</span>
+<span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LangSmith is a platform for LLM application development, monitoring, and testing&quot;</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>A dataset entry are either structured or unstructured.
+For structured entries, the default names of the columns are <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">question</span></code>, and <code class="docutils literal notranslate"><span class="pre">answer</span></code>,
+where the libraries know that <code class="docutils literal notranslate"><span class="pre">question</span></code> is an input and <code class="docutils literal notranslate"><span class="pre">answer</span></code> is the output. You can
+change the column names and their configurations in the <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file
+with <code class="docutils literal notranslate"><span class="pre">eval.general.dataset.structure</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">structure</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my_id&quot;</span>
+<span class="w">        </span><span class="nt">question</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my_question&quot;</span>
+<span class="w">        </span><span class="nt">answer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my_answer&quot;</span>
+</pre></div>
+</div>
+<p>For unstructured entries, the entire dictionary is the input to the workflow
+but the libraries don’t know the individual columns. The input and the workflow output
+goes through evaluation, where evaluators, such as swe-bench evaluator, handle
+unstructured entries. The following is an example configuration for
+the swe-bench evaluator:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">      </span><span class="nt">file_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/swe_bench/data/test_dataset_lite.json</span>
+<span class="w">      </span><span class="nt">id_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instance_id</span>
+<span class="w">      </span><span class="nt">structure</span><span class="p">:</span><span class="w"> </span><span class="c1"># For swe-bench the entire row is the input</span>
+<span class="w">        </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</section>
+<section id="filtering-datasets">
+<h3>Filtering Datasets<a class="headerlink" href="#filtering-datasets" title="Link to this heading">#</a></h3>
+<p>While evaluating large datasets, you can filter the dataset to a
+smaller subset by allowing or denying entries with the <code class="docutils literal notranslate"><span class="pre">eval.general.dataset.filter</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file. The filter is a dictionary with keys as the column names and
+values as the filter values.</p>
+<p>The following is an example configuration, where evaluation
+runs on a subset of the swe-bench-verified dataset, which has 500 entries. The configuration runs the
+evaluation on two entries with instance identifications (<code class="docutils literal notranslate"><span class="pre">instance_id</span></code>), <code class="docutils literal notranslate"><span class="pre">sympy__sympy-20590</span></code>
+and <code class="docutils literal notranslate"><span class="pre">sympy__sympy-21055</span></code>. The evaluation iteratively develops and debugs the workflows.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">      </span><span class="nt">file_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/swe_bench/data/test_dataset_verified.json</span>
+<span class="w">      </span><span class="nt">id_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instance_id</span>
+<span class="w">      </span><span class="nt">structure</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">allowlist</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">field</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">instance_id</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sympy__sympy-20590</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sympy__sympy-21055</span>
+</pre></div>
+</div>
+<p>The swe-bench verified dataset has 500 entries but above configuration runs the workflow and evaluation on only two entries with <code class="docutils literal notranslate"><span class="pre">instance_id</span></code> <code class="docutils literal notranslate"><span class="pre">sympy__sympy-20590</span></code> and <code class="docutils literal notranslate"><span class="pre">sympy__sympy-21055</span></code>. This is useful for iterative development and troubleshooting of the workflow.</p>
+<p>You can also skip entries from the dataset. Here is an example configuration to skip entries with <code class="docutils literal notranslate"><span class="pre">instance_id</span></code> <code class="docutils literal notranslate"><span class="pre">sympy__sympy-20590</span></code> and <code class="docutils literal notranslate"><span class="pre">sympy__sympy-21055</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">      </span><span class="nt">file_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/swe_bench/data/test_dataset_verified.json</span>
+<span class="w">      </span><span class="nt">id_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instance_id</span>
+<span class="w">      </span><span class="nt">structure</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">filter</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">denylist</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">field</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">instance_id</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sympy__sympy-20590</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sympy__sympy-21055</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="agentiq-built-in-evaluators">
+<h2>AgentIQ Built-in Evaluators<a class="headerlink" href="#agentiq-built-in-evaluators" title="Link to this heading">#</a></h2>
+<p>AgentIQ provides the following built-in evaluator:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ragas</span></code> - An evaluator to run and evaluate RAG-like workflows using the public RAGAS API.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trajectory</span></code> - An evaluator to run and evaluate the LangChain agent trajectory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">swe_bench</span></code> - An evaluator to run and evaluate the workflow on the SWE-Bench dataset.</p></li>
+</ul>
+<section id="ragas-evaluator">
+<h3>RAGAS Evaluator<a class="headerlink" href="#ragas-evaluator" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://docs.ragas.io/">RAGAS</a> is an OSS evaluation framework that enables end-to-end
+evaluation of RAG workflows. AgentIQ provides an interface to RAGAS to evaluate the performance
+of RAG-like AgentIQ workflows.</p>
+<p>RAGAS provides a set of evaluation metrics to configure in the <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file
+by adding an evaluator section with type<code class="docutils literal notranslate"><span class="pre">ragas</span></code>.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">evaluators</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">rag_accuracy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ragas</span>
+<span class="w">      </span><span class="nt">metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnswerAccuracy</span>
+<span class="w">      </span><span class="nt">llm_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nim_rag_eval_llm</span>
+<span class="w">    </span><span class="nt">rag_groundedness</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ragas</span>
+<span class="w">      </span><span class="nt">metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ResponseGroundedness</span>
+<span class="w">      </span><span class="nt">llm_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nim_rag_eval_llm</span>
+<span class="w">    </span><span class="nt">rag_relevance</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ragas</span>
+<span class="w">      </span><span class="nt">metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContextRelevance</span>
+<span class="w">      </span><span class="nt">llm_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nim_rag_eval_llm</span>
+<span class="w">    </span><span class="nt">rag_factual_correctness</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ragas</span>
+<span class="w">      </span><span class="nt">metric</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">FactualCorrectness</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">kwargs</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precision</span>
+<span class="w">      </span><span class="nt">llm_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nim_rag_eval_large_llm</span><span class="w"> </span><span class="c1"># requires more tokens</span>
+</pre></div>
+</div>
+<p>In the example four <code class="docutils literal notranslate"><span class="pre">ragas</span></code> evaluators are configured to evaluate various <code class="docutils literal notranslate"><span class="pre">ragas</span></code>metrics. The metric can be a string or a dictionary. If the metric is a dictionary, the <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> provided are passed to the metric function.</p>
+<p>The following <code class="docutils literal notranslate"><span class="pre">ragas</span></code> metrics are recommended for RAG like workflows -
+<code class="docutils literal notranslate"><span class="pre">AnswerAccuracy</span></code>: Evaluates the accuracy of the answer generated by the workflow against the expected answer or ground truth.
+<code class="docutils literal notranslate"><span class="pre">ContextRelevance</span></code>: Evaluates the relevance of the context retrieved by the workflow against the question.
+<code class="docutils literal notranslate"><span class="pre">ResponseGroundedness</span></code>: Evaluates the <code class="docutils literal notranslate"><span class="pre">groundedness</span></code> of the response generated by the workflow based on the context retrieved by the workflow.</p>
+</section>
+<section id="agent-trajectory-evaluator">
+<h3>Agent Trajectory Evaluator<a class="headerlink" href="#agent-trajectory-evaluator" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">trajectory</span></code> evaluator uses LangChain agent trajectory evaluation to evaluate the workflow. To use the <code class="docutils literal notranslate"><span class="pre">trajectory</span></code> evaluator, add the following configuration to the <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">evaluators</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">trajectory</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trajectory</span>
+<span class="w">      </span><span class="nt">llm_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nim_trajectory_eval_llm</span>
+</pre></div>
+</div>
+</section>
+<section id="swe-benchmark-evaluator">
+<h3>Swe-benchmark Evaluator<a class="headerlink" href="#swe-benchmark-evaluator" title="Link to this heading">#</a></h3>
+<p>Workflows can use the swe-bench evaluator to solve swe-bench problems. To evaluate the patch, generated by the workflow, install the repository and run the <code class="docutils literal notranslate"><span class="pre">PASS_TO_PASS</span></code> and <code class="docutils literal notranslate"><span class="pre">FAIL_TO_PASS</span></code> tests.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">      </span><span class="nt">file_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/swe_bench/data/test_dataset_lite.json</span>
+<span class="w">      </span><span class="nt">id_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instance_id</span>
+<span class="w">      </span><span class="nt">structure</span><span class="p">:</span><span class="w"> </span><span class="c1"># For swe-bench the entire row is the input</span>
+<span class="w">        </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">evaluators</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">swe_bench</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">swe_bench</span>
+<span class="w">      </span><span class="nt">run_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aiq_1</span>
+</pre></div>
+</div>
+<p>The swe-bench evaluator uses unstructured dataset entries. The entire row is provided as input to the workflow.</p>
+</section>
+</section>
+<section id="adding-custom-evaluators">
+<h2>Adding Custom Evaluators<a class="headerlink" href="#adding-custom-evaluators" title="Link to this heading">#</a></h2>
+<p>You can add custom evaluators to evaluate the workflow output. To add a custom evaluator, you need to implement the evaluator and register it with the AgentIQ evaluator system. See the <a class="reference internal" href="../guides/custom-evaluator.html"><span class="std std-doc">Custom Evaluator</span></a> documentation for more information.</p>
+</section>
+<section id="running-multiple-repetitions">
+<h2>Running multiple repetitions<a class="headerlink" href="#running-multiple-repetitions" title="Link to this heading">#</a></h2>
+<p>You can run multiple repetitions of the evaluation by running a command line option <code class="docutils literal notranslate"><span class="pre">--reps</span></code>. For example, to run the evaluation 5 times, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--config_file<span class="o">=</span>examples/simple/configs/eval_config.yml<span class="w"> </span>--reps<span class="o">=</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>This will allow you to get an average score across multiple runs and analyze the variation in the generated outputs.</p>
+</section>
+<section id="running-evaluation-on-large-datasets">
+<h2>Running evaluation on large datasets<a class="headerlink" href="#running-evaluation-on-large-datasets" title="Link to this heading">#</a></h2>
+<p>Similar to how evaluators are run in parallel, entries in the dataset are also processed in parallel. Concurrency is configurable using the <code class="docutils literal notranslate"><span class="pre">eval.general.concurrency</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file. The default value is 8. Increase or decrease the value based on the available resources.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">concurrency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</pre></div>
+</div>
+</section>
+<section id="pickup-where-you-left-off">
+<h2>Pickup where you left off<a class="headerlink" href="#pickup-where-you-left-off" title="Link to this heading">#</a></h2>
+<p>When running the evaluation on a large dataset, it is recommended to resume the evaluation from where it was left off. This is particularly useful while using overloaded services that may timeout while running the workflow. When that happens a workflow interrupted warning is issued and workflow output is saved to a file.</p>
+<p>You can then re-run evaluation on that output file along with <code class="docutils literal notranslate"><span class="pre">--skip_completed_entries</span></code> options.</p>
+<p>Pass-1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aiq</span> <span class="nb">eval</span> <span class="o">--</span><span class="n">config_file</span><span class="o">=</span><span class="n">examples</span><span class="o">/</span><span class="n">simple</span><span class="o">/</span><span class="n">configs</span><span class="o">/</span><span class="n">eval_config</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+<p>This pass results in workflow interrupted warning. You can then do another pass.</p>
+<p>Pass-2:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--config_file<span class="o">=</span>examples/simple/configs/eval_config.yml<span class="w"> </span>--skip_completed_entries<span class="w"> </span>--dataset<span class="o">=</span>.tmp/aiq/examples/simple/workflow_output.json
+</pre></div>
+</div>
+</section>
+<section id="running-evaluation-offline">
+<h2>Running evaluation offline<a class="headerlink" href="#running-evaluation-offline" title="Link to this heading">#</a></h2>
+<p>You can evaluate a dataset with previously generated answers via the <code class="docutils literal notranslate"><span class="pre">--skip_workflow</span></code> option. In this case the dataset has both the expected <code class="docutils literal notranslate"><span class="pre">answer</span></code> and the <code class="docutils literal notranslate"><span class="pre">generated_answer</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--config_file<span class="o">=</span>examples/simple/configs/eval_config.yml<span class="w"> </span>--skip_workflow<span class="w"> </span>--dataset<span class="o">=</span>.tmp/aiq/examples/simple/workflow_output.json
+</pre></div>
+</div>
+<p>This assumes that the workflow output is previously generated and stored in the <code class="docutils literal notranslate"><span class="pre">.tmp/aiq/examples/simple/workflow_output.json</span></code> file.</p>
+</section>
+<section id="running-the-workflow-over-a-dataset-without-evaluation">
+<h2>Running the workflow over a dataset without evaluation<a class="headerlink" href="#running-the-workflow-over-a-dataset-without-evaluation" title="Link to this heading">#</a></h2>
+<p>You can do this by running <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">eval</span></code> with a workflow configuration file that includes an <code class="docutils literal notranslate"><span class="pre">eval</span></code> section with no <code class="docutils literal notranslate"><span class="pre">evaluators</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">output_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.tmp/aiq/examples/simple/</span>
+<span class="w">    </span><span class="nt">dataset</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">      </span><span class="nt">file_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">examples/simple/data/langsmith.json</span>
+</pre></div>
+</div>
+</section>
+<section id="evaluation-output">
+<h2>Evaluation output<a class="headerlink" href="#evaluation-output" title="Link to this heading">#</a></h2>
+<p>The output of the workflow is stored as <code class="docutils literal notranslate"><span class="pre">workflow_output.json</span></code> in the <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> provided in the config.yml -</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">eval</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">output_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.tmp/aiq/examples/simple/</span>
+</pre></div>
+</div>
+<p>Here is a sample workflow output snipped generated by running evaluation on the <code class="docutils literal notranslate"><span class="pre">simple</span></code> example workflow -</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What is langsmith&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="s2">&quot;LangSmith is a platform for LLM application development, monitoring, and testing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;generated_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;LangSmith is a platform for LLM (Large Language Model) application development, monitoring, and testing. It provides features such as automations, threads, annotating traces, adding runs to a dataset, prototyping, and debugging to support the development lifecycle of LLM applications.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;intermediate_steps&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">SNIPPED</span> <span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;expected_intermediate_steps&quot;</span><span class="p">:</span> <span class="p">[]</span>
+  <span class="p">},</span>
+</pre></div>
+</div>
+<p>The output of the evaluators are stored in distinct files in the same <code class="docutils literal notranslate"><span class="pre">output_dir</span></code> as <code class="docutils literal notranslate"><span class="pre">&lt;evaluator_name&gt;_output.json</span></code>. An evaluator typically provides an average score and a score per-entry. Here is a sample <code class="docutils literal notranslate"><span class="pre">rag_accuracy</span></code> output -</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;average_score&quot;</span>:<span class="w"> </span><span class="m">0</span>.6666666666666666,
+<span class="w">  </span><span class="s2">&quot;eval_output_items&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="m">1</span>,
+<span class="w">      </span><span class="s2">&quot;score&quot;</span>:<span class="w"> </span><span class="m">0</span>.5,
+<span class="w">      </span><span class="s2">&quot;reasoning&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;user_input&quot;</span>:<span class="w"> </span><span class="s2">&quot;What is langsmith&quot;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="m">2</span>,
+<span class="w">      </span><span class="s2">&quot;score&quot;</span>:<span class="w"> </span><span class="m">0</span>.75,
+<span class="w">      </span><span class="s2">&quot;reasoning&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;user_input&quot;</span>:<span class="w"> </span><span class="s2">&quot;How do I proptotype with langsmith&quot;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;id&quot;</span>:<span class="w"> </span><span class="m">3</span>,
+<span class="w">      </span><span class="s2">&quot;score&quot;</span>:<span class="w"> </span><span class="m">0</span>.75,
+<span class="w">      </span><span class="s2">&quot;reasoning&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;user_input&quot;</span>:<span class="w"> </span><span class="s2">&quot;What are langsmith automations?&quot;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="profiling-and-performance-monitoring-of-agentiq-workflows">
+<h2>Profiling and Performance Monitoring of AgentIQ Workflows<a class="headerlink" href="#profiling-and-performance-monitoring-of-agentiq-workflows" title="Link to this heading">#</a></h2>
+<p>You can profile workflows via the AgentIQ evaluation system. For more information, see the <a class="reference internal" href="profiler.html"><span class="std std-doc">Profiler</span></a> documentation.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="profiler.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Profiling and Performance Monitoring of NVIDIA AgentIQ Workflows</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="memory.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">NVIDIA AgentIQ Memory Module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-datasets">Using Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-format">Dataset Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-datasets">Filtering Datasets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agentiq-built-in-evaluators">AgentIQ Built-in Evaluators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ragas-evaluator">RAGAS Evaluator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-trajectory-evaluator">Agent Trajectory Evaluator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#swe-benchmark-evaluator">Swe-benchmark Evaluator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-custom-evaluators">Adding Custom Evaluators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-multiple-repetitions">Running multiple repetitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-evaluation-on-large-datasets">Running evaluation on large datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pickup-where-you-left-off">Pickup where you left off</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-evaluation-offline">Running evaluation offline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-workflow-over-a-dataset-without-evaluation">Running the workflow over a dataset without evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-output">Evaluation output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-and-performance-monitoring-of-agentiq-workflows">Profiling and Performance Monitoring of AgentIQ Workflows</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025, NVIDIA.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+<div class="extra_footer">
+  
+  
+    <script type="text/javascript">if (typeof _satellite !== "undefined") {_satellite.pageBottom();}</script>
+    
+  
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  <script type="text/javascript">_satellite.pageBottom();</script>
+</body>
+</html>

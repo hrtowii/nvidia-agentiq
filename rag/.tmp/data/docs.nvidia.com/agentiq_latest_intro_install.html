@@ -1,0 +1,1028 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Install NVIDIA AgentIQ &#8212; AgentIQ</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=d0aa047a" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=5ceeb459"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro/install';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Get Started with NVIDIA AgentIQ" href="get-started.html" />
+    <link rel="prev" title="Why Use NVIDIA AgentIQ?" href="why-agentiq.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+
+
+    <script src="https://assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js" ></script>
+    
+
+
+  <link rel="stylesheet" href="/common-libs/common.css">
+<script src="/common-libs/common.js"></script>
+<script src="//assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="why-agentiq.html">Why Use NVIDIA AgentIQ?</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Install AgentIQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get-started.html">Get Started</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/create-customize-workflows.html">Create and Customize Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/sharing-workflows-and-tools.html">Share Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/evaluate.html">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/custom-evaluator.html">Custom Evaluator</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../guides/observe-workflow-with-phoenix.html">Observing a Workflow with Phoenix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/using-agentiq-ui-and-server.html">Use User Interface and API Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/profiler.html">Profile a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/adding-an-llm-provider.html">Adding an LLM Provider</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../concepts/index.html">Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/workflow-configuration.html">Workflow Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/profiler.html">Profile and Monitor Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/evaluate.html">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/memory.html">Memory Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/observability.html">Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts/plugins.html">Plugins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../components/index.html">Components</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../components/react-agent.html">ReAct Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/reasoning-agent.html">Reasoning Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/tool-calling-agent.html">Tool Calling Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/retriever.html">Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/mcp.html">Model Context Protocol (MCP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/code-execution.html">Code Execution Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/contributing.html">Contributing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../references/index.html">References</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/interactive-models.html">Interactive Models Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/websockets.html">WebSocket Message Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/aiq/index.html">aiq</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/agent/index.html">aiq.agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/base/index.html">aiq.agent.base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/react_agent/index.html">aiq.agent.react_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/agent/index.html">aiq.agent.react_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/output_parser/index.html">aiq.agent.react_agent.output_parser</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/prompt/index.html">aiq.agent.react_agent.prompt</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/register/index.html">aiq.agent.react_agent.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/index.html">aiq.agent.reasoning_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/reasoning_agent/index.html">aiq.agent.reasoning_agent.reasoning_agent</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/register/index.html">aiq.agent.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/index.html">aiq.agent.tool_calling_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/agent/index.html">aiq.agent.tool_calling_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/register/index.html">aiq.agent.tool_calling_agent.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/builder/index.html">aiq.builder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/builder/index.html">aiq.builder.builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/component_utils/index.html">aiq.builder.component_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/context/index.html">aiq.builder.context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/embedder/index.html">aiq.builder.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/eval_builder/index.html">aiq.builder.eval_builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/evaluator/index.html">aiq.builder.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/framework_enum/index.html">aiq.builder.framework_enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/front_end/index.html">aiq.builder.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function/index.html">aiq.builder.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_base/index.html">aiq.builder.function_base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_info/index.html">aiq.builder.function_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/intermediate_step_manager/index.html">aiq.builder.intermediate_step_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/llm/index.html">aiq.builder.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/retriever/index.html">aiq.builder.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/user_interaction_manager/index.html">aiq.builder.user_interaction_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow/index.html">aiq.builder.workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow_builder/index.html">aiq.builder.workflow_builder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/cli/index.html">aiq.cli</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/cli_utils/index.html">aiq.cli.cli_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/config_override/index.html">aiq.cli.cli_utils.config_override</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/validation/index.html">aiq.cli.cli_utils.validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/commands/index.html">aiq.cli.commands</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/configure/index.html">aiq.cli.commands.configure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/channel/index.html">aiq.cli.commands.configure.channel</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/configure/index.html">aiq.cli.commands.configure.configure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/evaluate/index.html">aiq.cli.commands.evaluate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/info/index.html">aiq.cli.commands.info</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/info/index.html">aiq.cli.commands.info.info</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_channels/index.html">aiq.cli.commands.info.list_channels</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_components/index.html">aiq.cli.commands.info.list_components</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/registry/index.html">aiq.cli.commands.registry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/publish/index.html">aiq.cli.commands.registry.publish</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/pull/index.html">aiq.cli.commands.registry.pull</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/registry/index.html">aiq.cli.commands.registry.registry</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/remove/index.html">aiq.cli.commands.registry.remove</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/search/index.html">aiq.cli.commands.registry.search</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/start/index.html">aiq.cli.commands.start</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/uninstall/index.html">aiq.cli.commands.uninstall</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/validate/index.html">aiq.cli.commands.validate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/workflow/index.html">aiq.cli.commands.workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow/index.html">aiq.cli.commands.workflow.workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow_commands/index.html">aiq.cli.commands.workflow.workflow_commands</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/entrypoint/index.html">aiq.cli.entrypoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/main/index.html">aiq.cli.main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/register_workflow/index.html">aiq.cli.register_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/type_registry/index.html">aiq.cli.type_registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/data_models/index.html">aiq.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/api_server/index.html">aiq.data_models.api_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/common/index.html">aiq.data_models.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component/index.html">aiq.data_models.component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component_ref/index.html">aiq.data_models.component_ref</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/config/index.html">aiq.data_models.config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/dataset_handler/index.html">aiq.data_models.dataset_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/discovery_metadata/index.html">aiq.data_models.discovery_metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/embedder/index.html">aiq.data_models.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluate/index.html">aiq.data_models.evaluate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluator/index.html">aiq.data_models.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/front_end/index.html">aiq.data_models.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function/index.html">aiq.data_models.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function_dependencies/index.html">aiq.data_models.function_dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/interactive/index.html">aiq.data_models.interactive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/intermediate_step/index.html">aiq.data_models.intermediate_step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/invocation_node/index.html">aiq.data_models.invocation_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/llm/index.html">aiq.data_models.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/logging/index.html">aiq.data_models.logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/memory/index.html">aiq.data_models.memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/profiler/index.html">aiq.data_models.profiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/registry_handler/index.html">aiq.data_models.registry_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/retriever/index.html">aiq.data_models.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/step_adaptor/index.html">aiq.data_models.step_adaptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/streaming/index.html">aiq.data_models.streaming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/swe_bench_model/index.html">aiq.data_models.swe_bench_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/telemetry_exporter/index.html">aiq.data_models.telemetry_exporter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/embedder/index.html">aiq.embedder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/langchain_client/index.html">aiq.embedder.langchain_client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/nim_embedder/index.html">aiq.embedder.nim_embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/register/index.html">aiq.embedder.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/eval/index.html">aiq.eval</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/config/index.html">aiq.eval.config</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/dataset_handler/index.html">aiq.eval.dataset_handler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_downloader/index.html">aiq.eval.dataset_handler.dataset_downloader</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_filter/index.html">aiq.eval.dataset_handler.dataset_filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_handler/index.html">aiq.eval.dataset_handler.dataset_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/evaluate/index.html">aiq.eval.evaluate</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/evaluator/index.html">aiq.eval.evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/evaluator/evaluator_model/index.html">aiq.eval.evaluator.evaluator_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/intermediate_step_adapter/index.html">aiq.eval.intermediate_step_adapter</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/index.html">aiq.eval.rag_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/evaluate/index.html">aiq.eval.rag_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/register/index.html">aiq.eval.rag_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/register/index.html">aiq.eval.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/remote_workflow/index.html">aiq.eval.remote_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/runtime_event_subscriber/index.html">aiq.eval.runtime_event_subscriber</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/index.html">aiq.eval.swe_bench_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/evaluate/index.html">aiq.eval.swe_bench_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/register/index.html">aiq.eval.swe_bench_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/index.html">aiq.eval.trajectory_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/evaluate/index.html">aiq.eval.trajectory_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/register/index.html">aiq.eval.trajectory_evaluator.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/front_ends/index.html">aiq.front_ends</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/console/index.html">aiq.front_ends.console</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_config/index.html">aiq.front_ends.console.console_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_plugin/index.html">aiq.front_ends.console.console_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/register/index.html">aiq.front_ends.console.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/cron/index.html">aiq.front_ends.cron</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/fastapi/index.html">aiq.front_ends.fastapi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_config/index.html">aiq.front_ends.fastapi.fastapi_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin_worker/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin_worker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/intermediate_steps_subscriber/index.html">aiq.front_ends.fastapi.intermediate_steps_subscriber</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/main/index.html">aiq.front_ends.fastapi.main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_handler/index.html">aiq.front_ends.fastapi.message_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_validator/index.html">aiq.front_ends.fastapi.message_validator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/register/index.html">aiq.front_ends.fastapi.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/response_helpers/index.html">aiq.front_ends.fastapi.response_helpers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/step_adaptor/index.html">aiq.front_ends.fastapi.step_adaptor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/websocket/index.html">aiq.front_ends.fastapi.websocket</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/register/index.html">aiq.front_ends.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/simple_base/index.html">aiq.front_ends.simple_base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/simple_base/simple_front_end_plugin_base/index.html">aiq.front_ends.simple_base.simple_front_end_plugin_base</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/llm/index.html">aiq.llm</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/nim_llm/index.html">aiq.llm.nim_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/openai_llm/index.html">aiq.llm.openai_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/register/index.html">aiq.llm.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/llm/utils/index.html">aiq.llm.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/env_config_value/index.html">aiq.llm.utils.env_config_value</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/error/index.html">aiq.llm.utils.error</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/memory/index.html">aiq.memory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/interfaces/index.html">aiq.memory.interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/models/index.html">aiq.memory.models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/observability/index.html">aiq.observability</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/async_otel_listener/index.html">aiq.observability.async_otel_listener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/register/index.html">aiq.observability.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/profiler/index.html">aiq.profiler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/callbacks/index.html">aiq.profiler.callbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/base_callback_class/index.html">aiq.profiler.callbacks.base_callback_class</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/langchain_callback_handler/index.html">aiq.profiler.callbacks.langchain_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/llama_index_callback_handler/index.html">aiq.profiler.callbacks.llama_index_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/semantic_kernel_callback_handler/index.html">aiq.profiler.callbacks.semantic_kernel_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/token_usage_base_model/index.html">aiq.profiler.callbacks.token_usage_base_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/data_frame_row/index.html">aiq.profiler.data_frame_row</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/decorators/index.html">aiq.profiler.decorators</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/index.html">aiq.profiler.forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/config/index.html">aiq.profiler.forecasting.config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/model_trainer/index.html">aiq.profiler.forecasting.model_trainer</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/index.html">aiq.profiler.forecasting.models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/forecasting_base_model/index.html">aiq.profiler.forecasting.models.forecasting_base_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/linear_model/index.html">aiq.profiler.forecasting.models.linear_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/random_forest_regressor/index.html">aiq.profiler.forecasting.models.random_forest_regressor</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/inference_metrics_model/index.html">aiq.profiler.inference_metrics_model</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/index.html">aiq.profiler.inference_optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/nested_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.nested_stack_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/simple_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.simple_stack_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/data_models/index.html">aiq.profiler.inference_optimization.data_models</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/index.html">aiq.profiler.inference_optimization.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/concurrency_spike_analysis/index.html">aiq.profiler.inference_optimization.experimental.concurrency_spike_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/prefix_span_analysis/index.html">aiq.profiler.inference_optimization.experimental.prefix_span_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/llm_metrics/index.html">aiq.profiler.inference_optimization.llm_metrics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/prompt_caching/index.html">aiq.profiler.inference_optimization.prompt_caching</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/token_uniqueness/index.html">aiq.profiler.inference_optimization.token_uniqueness</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/workflow_runtimes/index.html">aiq.profiler.inference_optimization.workflow_runtimes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/intermediate_property_adapter/index.html">aiq.profiler.intermediate_property_adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/profile_runner/index.html">aiq.profiler.profile_runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/utils/index.html">aiq.profiler.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/index.html">aiq.registry_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/local/index.html">aiq.registry_handlers.local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/local_handler/index.html">aiq.registry_handlers.local.local_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/register_local/index.html">aiq.registry_handlers.local.register_local</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/metadata_factory/index.html">aiq.registry_handlers.metadata_factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/package_utils/index.html">aiq.registry_handlers.package_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/index.html">aiq.registry_handlers.pypi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/pypi_handler/index.html">aiq.registry_handlers.pypi.pypi_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/register_pypi/index.html">aiq.registry_handlers.pypi.register_pypi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/register/index.html">aiq.registry_handlers.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/registry_handler_base/index.html">aiq.registry_handlers.registry_handler_base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/rest/index.html">aiq.registry_handlers.rest</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/register_rest/index.html">aiq.registry_handlers.rest.register_rest</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/rest_handler/index.html">aiq.registry_handlers.rest.rest_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/index.html">aiq.registry_handlers.schemas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/headers/index.html">aiq.registry_handlers.schemas.headers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/package/index.html">aiq.registry_handlers.schemas.package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/publish/index.html">aiq.registry_handlers.schemas.publish</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/pull/index.html">aiq.registry_handlers.schemas.pull</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/remove/index.html">aiq.registry_handlers.schemas.remove</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/search/index.html">aiq.registry_handlers.schemas.search</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/status/index.html">aiq.registry_handlers.schemas.status</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/retriever/index.html">aiq.retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/interface/index.html">aiq.retriever.interface</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/milvus/index.html">aiq.retriever.milvus</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/register/index.html">aiq.retriever.milvus.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/retriever/index.html">aiq.retriever.milvus.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/models/index.html">aiq.retriever.models</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/index.html">aiq.retriever.nemo_retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/register/index.html">aiq.retriever.nemo_retriever.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/retriever/index.html">aiq.retriever.nemo_retriever.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/register/index.html">aiq.retriever.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/runtime/index.html">aiq.runtime</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/loader/index.html">aiq.runtime.loader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/runner/index.html">aiq.runtime.runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/session/index.html">aiq.runtime.session</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/settings/index.html">aiq.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/settings/global_settings/index.html">aiq.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/tool/index.html">aiq.tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/index.html">aiq.tool.code_execution</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/code_sandbox/index.html">aiq.tool.code_execution.code_sandbox</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/index.html">aiq.tool.code_execution.local_sandbox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/local_sandbox_server/index.html">aiq.tool.code_execution.local_sandbox.local_sandbox_server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/register/index.html">aiq.tool.code_execution.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/utils/index.html">aiq.tool.code_execution.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/datetime_tools/index.html">aiq.tool.datetime_tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/document_search/index.html">aiq.tool.document_search</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/github_tools/index.html">aiq.tool.github_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_commit/index.html">aiq.tool.github_tools.create_github_commit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_issue/index.html">aiq.tool.github_tools.create_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_pr/index.html">aiq.tool.github_tools.create_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_file/index.html">aiq.tool.github_tools.get_github_file</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_issue/index.html">aiq.tool.github_tools.get_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_pr/index.html">aiq.tool.github_tools.get_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/update_github_issue/index.html">aiq.tool.github_tools.update_github_issue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/mcp/index.html">aiq.tool.mcp</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_client/index.html">aiq.tool.mcp.mcp_client</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_tool/index.html">aiq.tool.mcp.mcp_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/memory_tools/index.html">aiq.tool.memory_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/add_memory_tool/index.html">aiq.tool.memory_tools.add_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/delete_memory_tool/index.html">aiq.tool.memory_tools.delete_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/get_memory_tool/index.html">aiq.tool.memory_tools.get_memory_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/nvidia_rag/index.html">aiq.tool.nvidia_rag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/register/index.html">aiq.tool.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/retriever/index.html">aiq.tool.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/utils/index.html">aiq.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/data_models/index.html">aiq.utils.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/data_models/schema_validator/index.html">aiq.utils.data_models.schema_validator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/debugging_utils/index.html">aiq.utils.debugging_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/exception_handlers/index.html">aiq.utils.exception_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/exception_handlers/schemas/index.html">aiq.utils.exception_handlers.schemas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/io/index.html">aiq.utils.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/io/yaml_tools/index.html">aiq.utils.io.yaml_tools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/metadata_utils/index.html">aiq.utils.metadata_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/producer_consumer_queue/index.html">aiq.utils.producer_consumer_queue</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/index.html">aiq.utils.reactive</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/base/index.html">aiq.utils.reactive.base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observable_base/index.html">aiq.utils.reactive.base.observable_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observer_base/index.html">aiq.utils.reactive.base.observer_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/subject_base/index.html">aiq.utils.reactive.base.subject_base</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observable/index.html">aiq.utils.reactive.observable</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observer/index.html">aiq.utils.reactive.observer</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subject/index.html">aiq.utils.reactive.subject</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subscription/index.html">aiq.utils.reactive.subscription</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/settings/index.html">aiq.utils.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/settings/global_settings/index.html">aiq.utils.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_converter/index.html">aiq.utils.type_converter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_utils/index.html">aiq.utils.type_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/url_utils/index.html">aiq.utils.url_utils</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Introduction to NVIDIA AgentIQ</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Install NVIDIA AgentIQ</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!--
+SPDX-FileCopyrightText: Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<section id="install-nvidia-agentiq">
+<h1>Install NVIDIA AgentIQ<a class="headerlink" href="#install-nvidia-agentiq" title="Link to this heading">#</a></h1>
+<p>AgentIQ is a Python library that doesn’t require a GPU to run the workflow by default. You can deploy the core workflows using one of the following:</p>
+<ul class="simple">
+<li><p>Ubuntu or other Linux distributions, including WSL, in a Python virtual environment.</p></li>
+</ul>
+<section id="install-from-source">
+<h2>Install From Source<a class="headerlink" href="#install-from-source" title="Link to this heading">#</a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h3>
+<p>Before you begin using AgentIQ, ensure that you meet the following software prerequisites.</p>
+<ul class="simple">
+<li><p>Install <a class="reference external" href="https://git-scm.com/">Git</a></p></li>
+<li><p>Install <a class="reference external" href="https://git-lfs.github.com/">Git Large File Storage</a> (LFS)</p></li>
+<li><p>Install <a class="reference external" href="https://docs.astral.sh/uv/getting-started/installation/">uv</a></p></li>
+</ul>
+<ol class="arabic">
+<li><p>Clone the AgentIQ repository to your local machine.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:NVIDIA/AgentIQ.git<span class="w"> </span>agentiq
+<span class="nb">cd</span><span class="w"> </span>agentiq
+</pre></div>
+</div>
+</li>
+<li><p>Initialize, fetch, and update submodules in the Git repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+</li>
+<li><p>Fetch the data sets by downloading the LFS files.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>install
+git<span class="w"> </span>lfs<span class="w"> </span>fetch
+git<span class="w"> </span>lfs<span class="w"> </span>pull
+</pre></div>
+</div>
+</li>
+<li><p>Create a Python environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>venv<span class="w"> </span>--seed<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p>Install the AgentIQ library.
+To install the AgentIQ library along with all of the optional dependencies. Including developer tools (<code class="docutils literal notranslate"><span class="pre">--all-groups</span></code>) and all of the dependencies needed for profiling and plugins (<code class="docutils literal notranslate"><span class="pre">--all-extras</span></code>) in the source repository, run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync<span class="w"> </span>--all-groups<span class="w"> </span>--all-extras
+</pre></div>
+</div>
+<p>Alternatively to install just the core AgentIQ without any plugins, run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync
+</pre></div>
+</div>
+<p>At this point individual plugins, which are located under the <code class="docutils literal notranslate"><span class="pre">packages</span></code> directory, can be installed with the following command <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">'.[&lt;plugin_name&gt;]'</span></code>.
+For example, to install the <code class="docutils literal notranslate"><span class="pre">langchain</span></code> plugin, run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;.[langchain]&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Many of the example workflows require plugins, and following the documented steps in one of these examples will in turn install the necessary plugins. For example following the steps in the <code class="docutils literal notranslate"><span class="pre">examples/simple/README.md</span></code> guide will install the <code class="docutils literal notranslate"><span class="pre">agentiq-langchain</span></code> plugin if you haven’t already done so.</p>
+</div>
+<p>In addition to plugins, there are optional dependencies needed for profiling. To install these dependencies, run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>profiling<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Verify that you’ve installed the AgentIQ library.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span>--help
+aiq<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If the installation succeeded, the <code class="docutils literal notranslate"><span class="pre">aiq</span></code> command will log the help message and its current version.</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="agentiq-packages">
+<h2>AgentIQ Packages<a class="headerlink" href="#agentiq-packages" title="Link to this heading">#</a></h2>
+<p>Once an AgentIQ workflow is ready for deployment to production, the deployed workflow will need to declare a dependency on the <code class="docutils literal notranslate"><span class="pre">agentiq</span></code> package, along with the needed plugins. When declaring a dependency on AgentIQ it is recommended to use the first two digits of the version number. For example if the version is <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code> then the dependency would be <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p>
+<p>For more information on the available plugins, refer to the <a class="reference internal" href="../concepts/plugins.html#framework-integrations"><span class="std std-ref">Framework Integrations</span></a> section of the plugins documentation.</p>
+<p>Example dependency for AgentIQ using the <code class="docutils literal notranslate"><span class="pre">langchain</span></code> plugin for projects using a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="s2">&quot;agentiq[langchain]~=1.0&quot;</span><span class="p">,</span>
+<span class="c1"># Add any additional dependencies your workflow needs</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Alternately for projects using a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">agentiq</span><span class="p">[</span><span class="n">langchain</span><span class="p">]</span><span class="o">==</span><span class="mf">1.0</span><span class="o">.*</span>
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>After installing AgentIQ, you can start using AgentIQ agentic workflows. For more information, refer to <a class="reference internal" href="get-started.html"><span class="std std-doc">Get Started with AgentIQ</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="why-agentiq.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Why Use NVIDIA AgentIQ?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="get-started.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Get Started with NVIDIA AgentIQ</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-from-source">Install From Source</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agentiq-packages">AgentIQ Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025, NVIDIA.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+<div class="extra_footer">
+  
+  
+    <script type="text/javascript">if (typeof _satellite !== "undefined") {_satellite.pageBottom();}</script>
+    
+  
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  <script type="text/javascript">_satellite.pageBottom();</script>
+</body>
+</html>

@@ -1,0 +1,1528 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Command Line Interface &#8212; AgentIQ</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=d0aa047a" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=5ceeb459"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'concepts/cli';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Plugin System in NVIDIA AgentIQ" href="plugins.html" />
+    <link rel="prev" title="NVIDIA AgentIQ Observability" href="observability.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.0.0" />
+
+
+    <script src="https://assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js" ></script>
+    
+
+
+  <link rel="stylesheet" href="/common-libs/common.css">
+<script src="/common-libs/common.js"></script>
+<script src="//assets.adobedtm.com/5d4962a43b79/c1061d2c5e7b/launch-191c2462b890.min.js"></script>
+</head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/nvidia-logo-horiz-rgb-blk-for-screen.svg" class="logo__image only-light" alt="AgentIQ - Home"/>
+    <img src="../_static/nvidia-logo-horiz-rgb-wht-for-screen.svg" class="logo__image only-dark pst-js-only" alt="AgentIQ - Home"/>
+  
+  
+    <p class="title logo__title">AgentIQ</p>
+  
+</a>
+
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Table of Contents">
+  <p class="bd-links__title" role="heading" aria-level="1">Table of Contents</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/index.html">Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/why-agentiq.html">Why Use NVIDIA AgentIQ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/install.html">Install AgentIQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/get-started.html">Get Started</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/index.html">Guides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/create-customize-workflows.html">Create and Customize Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/sharing-workflows-and-tools.html">Share Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/evaluate.html">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/custom-evaluator.html">Custom Evaluator</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../guides/observe-workflow-with-phoenix.html">Observing a Workflow with Phoenix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/using-agentiq-ui-and-server.html">Use User Interface and API Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/profiler.html">Profile a Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/adding-an-llm-provider.html">Adding an LLM Provider</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Concepts</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflow-configuration.html">Workflow Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiler.html">Profile and Monitor Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluate.html">Evaluate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="observability.html">Observability</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html">Plugins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../components/index.html">Components</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../components/react-agent.html">ReAct Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/reasoning-agent.html">Reasoning Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/tool-calling-agent.html">Tool Calling Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/retriever.html">Retriever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/mcp.html">Model Context Protocol (MCP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/code-execution.html">Code Execution Tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">Advanced</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/contributing.html">Contributing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../references/index.html">References</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../references/interactive-models.html">Interactive Models Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../references/websockets.html">WebSocket Message Schema</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/aiq/index.html">aiq</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/agent/index.html">aiq.agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/base/index.html">aiq.agent.base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/react_agent/index.html">aiq.agent.react_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/agent/index.html">aiq.agent.react_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/output_parser/index.html">aiq.agent.react_agent.output_parser</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/prompt/index.html">aiq.agent.react_agent.prompt</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/react_agent/register/index.html">aiq.agent.react_agent.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/index.html">aiq.agent.reasoning_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/reasoning_agent/reasoning_agent/index.html">aiq.agent.reasoning_agent.reasoning_agent</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/agent/register/index.html">aiq.agent.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/index.html">aiq.agent.tool_calling_agent</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/agent/index.html">aiq.agent.tool_calling_agent.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/agent/tool_calling_agent/register/index.html">aiq.agent.tool_calling_agent.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/builder/index.html">aiq.builder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/builder/index.html">aiq.builder.builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/component_utils/index.html">aiq.builder.component_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/context/index.html">aiq.builder.context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/embedder/index.html">aiq.builder.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/eval_builder/index.html">aiq.builder.eval_builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/evaluator/index.html">aiq.builder.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/framework_enum/index.html">aiq.builder.framework_enum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/front_end/index.html">aiq.builder.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function/index.html">aiq.builder.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_base/index.html">aiq.builder.function_base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/function_info/index.html">aiq.builder.function_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/intermediate_step_manager/index.html">aiq.builder.intermediate_step_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/llm/index.html">aiq.builder.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/retriever/index.html">aiq.builder.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/user_interaction_manager/index.html">aiq.builder.user_interaction_manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow/index.html">aiq.builder.workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/builder/workflow_builder/index.html">aiq.builder.workflow_builder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/cli/index.html">aiq.cli</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/cli_utils/index.html">aiq.cli.cli_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/config_override/index.html">aiq.cli.cli_utils.config_override</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/cli_utils/validation/index.html">aiq.cli.cli_utils.validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/cli/commands/index.html">aiq.cli.commands</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/configure/index.html">aiq.cli.commands.configure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/channel/index.html">aiq.cli.commands.configure.channel</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/configure/configure/index.html">aiq.cli.commands.configure.configure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/evaluate/index.html">aiq.cli.commands.evaluate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/info/index.html">aiq.cli.commands.info</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/info/index.html">aiq.cli.commands.info.info</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_channels/index.html">aiq.cli.commands.info.list_channels</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/info/list_components/index.html">aiq.cli.commands.info.list_components</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/registry/index.html">aiq.cli.commands.registry</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/publish/index.html">aiq.cli.commands.registry.publish</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/pull/index.html">aiq.cli.commands.registry.pull</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/registry/index.html">aiq.cli.commands.registry.registry</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/remove/index.html">aiq.cli.commands.registry.remove</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/registry/search/index.html">aiq.cli.commands.registry.search</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/start/index.html">aiq.cli.commands.start</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/uninstall/index.html">aiq.cli.commands.uninstall</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/cli/commands/validate/index.html">aiq.cli.commands.validate</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/cli/commands/workflow/index.html">aiq.cli.commands.workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow/index.html">aiq.cli.commands.workflow.workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/cli/commands/workflow/workflow_commands/index.html">aiq.cli.commands.workflow.workflow_commands</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/entrypoint/index.html">aiq.cli.entrypoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/main/index.html">aiq.cli.main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/register_workflow/index.html">aiq.cli.register_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/cli/type_registry/index.html">aiq.cli.type_registry</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/data_models/index.html">aiq.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/api_server/index.html">aiq.data_models.api_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/common/index.html">aiq.data_models.common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component/index.html">aiq.data_models.component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/component_ref/index.html">aiq.data_models.component_ref</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/config/index.html">aiq.data_models.config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/dataset_handler/index.html">aiq.data_models.dataset_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/discovery_metadata/index.html">aiq.data_models.discovery_metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/embedder/index.html">aiq.data_models.embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluate/index.html">aiq.data_models.evaluate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/evaluator/index.html">aiq.data_models.evaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/front_end/index.html">aiq.data_models.front_end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function/index.html">aiq.data_models.function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/function_dependencies/index.html">aiq.data_models.function_dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/interactive/index.html">aiq.data_models.interactive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/intermediate_step/index.html">aiq.data_models.intermediate_step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/invocation_node/index.html">aiq.data_models.invocation_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/llm/index.html">aiq.data_models.llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/logging/index.html">aiq.data_models.logging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/memory/index.html">aiq.data_models.memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/profiler/index.html">aiq.data_models.profiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/registry_handler/index.html">aiq.data_models.registry_handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/retriever/index.html">aiq.data_models.retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/step_adaptor/index.html">aiq.data_models.step_adaptor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/streaming/index.html">aiq.data_models.streaming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/swe_bench_model/index.html">aiq.data_models.swe_bench_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/data_models/telemetry_exporter/index.html">aiq.data_models.telemetry_exporter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/embedder/index.html">aiq.embedder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/langchain_client/index.html">aiq.embedder.langchain_client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/nim_embedder/index.html">aiq.embedder.nim_embedder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/embedder/register/index.html">aiq.embedder.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/eval/index.html">aiq.eval</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/config/index.html">aiq.eval.config</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/dataset_handler/index.html">aiq.eval.dataset_handler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_downloader/index.html">aiq.eval.dataset_handler.dataset_downloader</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_filter/index.html">aiq.eval.dataset_handler.dataset_filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/dataset_handler/dataset_handler/index.html">aiq.eval.dataset_handler.dataset_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/evaluate/index.html">aiq.eval.evaluate</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/evaluator/index.html">aiq.eval.evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/evaluator/evaluator_model/index.html">aiq.eval.evaluator.evaluator_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/intermediate_step_adapter/index.html">aiq.eval.intermediate_step_adapter</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/index.html">aiq.eval.rag_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/evaluate/index.html">aiq.eval.rag_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/rag_evaluator/register/index.html">aiq.eval.rag_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/register/index.html">aiq.eval.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/remote_workflow/index.html">aiq.eval.remote_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/eval/runtime_event_subscriber/index.html">aiq.eval.runtime_event_subscriber</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/index.html">aiq.eval.swe_bench_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/evaluate/index.html">aiq.eval.swe_bench_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/swe_bench_evaluator/register/index.html">aiq.eval.swe_bench_evaluator.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/index.html">aiq.eval.trajectory_evaluator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/evaluate/index.html">aiq.eval.trajectory_evaluator.evaluate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/eval/trajectory_evaluator/register/index.html">aiq.eval.trajectory_evaluator.register</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/front_ends/index.html">aiq.front_ends</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/console/index.html">aiq.front_ends.console</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_config/index.html">aiq.front_ends.console.console_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/console_front_end_plugin/index.html">aiq.front_ends.console.console_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/console/register/index.html">aiq.front_ends.console.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/cron/index.html">aiq.front_ends.cron</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/fastapi/index.html">aiq.front_ends.fastapi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_config/index.html">aiq.front_ends.fastapi.fastapi_front_end_config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/fastapi_front_end_plugin_worker/index.html">aiq.front_ends.fastapi.fastapi_front_end_plugin_worker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/intermediate_steps_subscriber/index.html">aiq.front_ends.fastapi.intermediate_steps_subscriber</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/main/index.html">aiq.front_ends.fastapi.main</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_handler/index.html">aiq.front_ends.fastapi.message_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/message_validator/index.html">aiq.front_ends.fastapi.message_validator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/register/index.html">aiq.front_ends.fastapi.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/response_helpers/index.html">aiq.front_ends.fastapi.response_helpers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/step_adaptor/index.html">aiq.front_ends.fastapi.step_adaptor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/fastapi/websocket/index.html">aiq.front_ends.fastapi.websocket</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/front_ends/register/index.html">aiq.front_ends.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/front_ends/simple_base/index.html">aiq.front_ends.simple_base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/front_ends/simple_base/simple_front_end_plugin_base/index.html">aiq.front_ends.simple_base.simple_front_end_plugin_base</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/llm/index.html">aiq.llm</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/nim_llm/index.html">aiq.llm.nim_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/openai_llm/index.html">aiq.llm.openai_llm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/llm/register/index.html">aiq.llm.register</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/llm/utils/index.html">aiq.llm.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/env_config_value/index.html">aiq.llm.utils.env_config_value</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/llm/utils/error/index.html">aiq.llm.utils.error</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/memory/index.html">aiq.memory</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/interfaces/index.html">aiq.memory.interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/memory/models/index.html">aiq.memory.models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/observability/index.html">aiq.observability</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/async_otel_listener/index.html">aiq.observability.async_otel_listener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/observability/register/index.html">aiq.observability.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/profiler/index.html">aiq.profiler</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/callbacks/index.html">aiq.profiler.callbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/base_callback_class/index.html">aiq.profiler.callbacks.base_callback_class</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/langchain_callback_handler/index.html">aiq.profiler.callbacks.langchain_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/llama_index_callback_handler/index.html">aiq.profiler.callbacks.llama_index_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/semantic_kernel_callback_handler/index.html">aiq.profiler.callbacks.semantic_kernel_callback_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/callbacks/token_usage_base_model/index.html">aiq.profiler.callbacks.token_usage_base_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/data_frame_row/index.html">aiq.profiler.data_frame_row</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/decorators/index.html">aiq.profiler.decorators</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/index.html">aiq.profiler.forecasting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/config/index.html">aiq.profiler.forecasting.config</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/forecasting/model_trainer/index.html">aiq.profiler.forecasting.model_trainer</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/index.html">aiq.profiler.forecasting.models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/forecasting_base_model/index.html">aiq.profiler.forecasting.models.forecasting_base_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/linear_model/index.html">aiq.profiler.forecasting.models.linear_model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/forecasting/models/random_forest_regressor/index.html">aiq.profiler.forecasting.models.random_forest_regressor</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/inference_metrics_model/index.html">aiq.profiler.inference_metrics_model</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/index.html">aiq.profiler.inference_optimization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/nested_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.nested_stack_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/bottleneck_analysis/simple_stack_analysis/index.html">aiq.profiler.inference_optimization.bottleneck_analysis.simple_stack_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/data_models/index.html">aiq.profiler.inference_optimization.data_models</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/index.html">aiq.profiler.inference_optimization.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/concurrency_spike_analysis/index.html">aiq.profiler.inference_optimization.experimental.concurrency_spike_analysis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/experimental/prefix_span_analysis/index.html">aiq.profiler.inference_optimization.experimental.prefix_span_analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/llm_metrics/index.html">aiq.profiler.inference_optimization.llm_metrics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/prompt_caching/index.html">aiq.profiler.inference_optimization.prompt_caching</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/token_uniqueness/index.html">aiq.profiler.inference_optimization.token_uniqueness</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/profiler/inference_optimization/workflow_runtimes/index.html">aiq.profiler.inference_optimization.workflow_runtimes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/intermediate_property_adapter/index.html">aiq.profiler.intermediate_property_adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/profile_runner/index.html">aiq.profiler.profile_runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/profiler/utils/index.html">aiq.profiler.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/index.html">aiq.registry_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/local/index.html">aiq.registry_handlers.local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/local_handler/index.html">aiq.registry_handlers.local.local_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/local/register_local/index.html">aiq.registry_handlers.local.register_local</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/metadata_factory/index.html">aiq.registry_handlers.metadata_factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/package_utils/index.html">aiq.registry_handlers.package_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/index.html">aiq.registry_handlers.pypi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/pypi_handler/index.html">aiq.registry_handlers.pypi.pypi_handler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/pypi/register_pypi/index.html">aiq.registry_handlers.pypi.register_pypi</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/register/index.html">aiq.registry_handlers.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/registry_handlers/registry_handler_base/index.html">aiq.registry_handlers.registry_handler_base</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/rest/index.html">aiq.registry_handlers.rest</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/register_rest/index.html">aiq.registry_handlers.rest.register_rest</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/rest/rest_handler/index.html">aiq.registry_handlers.rest.rest_handler</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/index.html">aiq.registry_handlers.schemas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/headers/index.html">aiq.registry_handlers.schemas.headers</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/package/index.html">aiq.registry_handlers.schemas.package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/publish/index.html">aiq.registry_handlers.schemas.publish</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/pull/index.html">aiq.registry_handlers.schemas.pull</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/remove/index.html">aiq.registry_handlers.schemas.remove</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/search/index.html">aiq.registry_handlers.schemas.search</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/registry_handlers/schemas/status/index.html">aiq.registry_handlers.schemas.status</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/retriever/index.html">aiq.retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/interface/index.html">aiq.retriever.interface</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/milvus/index.html">aiq.retriever.milvus</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/register/index.html">aiq.retriever.milvus.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/milvus/retriever/index.html">aiq.retriever.milvus.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/models/index.html">aiq.retriever.models</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/index.html">aiq.retriever.nemo_retriever</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/register/index.html">aiq.retriever.nemo_retriever.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/retriever/nemo_retriever/retriever/index.html">aiq.retriever.nemo_retriever.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/retriever/register/index.html">aiq.retriever.register</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/runtime/index.html">aiq.runtime</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/loader/index.html">aiq.runtime.loader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/runner/index.html">aiq.runtime.runner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/runtime/session/index.html">aiq.runtime.session</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/settings/index.html">aiq.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/settings/global_settings/index.html">aiq.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/tool/index.html">aiq.tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/index.html">aiq.tool.code_execution</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/code_sandbox/index.html">aiq.tool.code_execution.code_sandbox</a></li>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/index.html">aiq.tool.code_execution.local_sandbox</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/tool/code_execution/local_sandbox/local_sandbox_server/index.html">aiq.tool.code_execution.local_sandbox.local_sandbox_server</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/register/index.html">aiq.tool.code_execution.register</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/code_execution/utils/index.html">aiq.tool.code_execution.utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/datetime_tools/index.html">aiq.tool.datetime_tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/document_search/index.html">aiq.tool.document_search</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/github_tools/index.html">aiq.tool.github_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_commit/index.html">aiq.tool.github_tools.create_github_commit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_issue/index.html">aiq.tool.github_tools.create_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/create_github_pr/index.html">aiq.tool.github_tools.create_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_file/index.html">aiq.tool.github_tools.get_github_file</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_issue/index.html">aiq.tool.github_tools.get_github_issue</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/get_github_pr/index.html">aiq.tool.github_tools.get_github_pr</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/github_tools/update_github_issue/index.html">aiq.tool.github_tools.update_github_issue</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/mcp/index.html">aiq.tool.mcp</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_client/index.html">aiq.tool.mcp.mcp_client</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/mcp/mcp_tool/index.html">aiq.tool.mcp.mcp_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/tool/memory_tools/index.html">aiq.tool.memory_tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/add_memory_tool/index.html">aiq.tool.memory_tools.add_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/delete_memory_tool/index.html">aiq.tool.memory_tools.delete_memory_tool</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/tool/memory_tools/get_memory_tool/index.html">aiq.tool.memory_tools.get_memory_tool</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/nvidia_rag/index.html">aiq.tool.nvidia_rag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/register/index.html">aiq.tool.register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/tool/retriever/index.html">aiq.tool.retriever</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../api/aiq/utils/index.html">aiq.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/data_models/index.html">aiq.utils.data_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/data_models/schema_validator/index.html">aiq.utils.data_models.schema_validator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/debugging_utils/index.html">aiq.utils.debugging_utils</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/exception_handlers/index.html">aiq.utils.exception_handlers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/exception_handlers/schemas/index.html">aiq.utils.exception_handlers.schemas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/io/index.html">aiq.utils.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/io/yaml_tools/index.html">aiq.utils.io.yaml_tools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/metadata_utils/index.html">aiq.utils.metadata_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/producer_consumer_queue/index.html">aiq.utils.producer_consumer_queue</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/index.html">aiq.utils.reactive</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5 has-children"><a class="reference internal" href="../api/aiq/utils/reactive/base/index.html">aiq.utils.reactive.base</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observable_base/index.html">aiq.utils.reactive.base.observable_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/observer_base/index.html">aiq.utils.reactive.base.observer_base</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../api/aiq/utils/reactive/base/subject_base/index.html">aiq.utils.reactive.base.subject_base</a></li>
+</ul>
+</details></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observable/index.html">aiq.utils.reactive.observable</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/observer/index.html">aiq.utils.reactive.observer</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subject/index.html">aiq.utils.reactive.subject</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/reactive/subscription/index.html">aiq.utils.reactive.subscription</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../api/aiq/utils/settings/index.html">aiq.utils.settings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l5"><a class="reference internal" href="../api/aiq/utils/settings/global_settings/index.html">aiq.utils.settings.global_settings</a></li>
+</ul>
+</details></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_converter/index.html">aiq.utils.type_converter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/type_utils/index.html">aiq.utils.type_utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/aiq/utils/url_utils/index.html">aiq.utils.url_utils</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">NVIDIA AgentIQ Concepts</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Command Line Interface</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!--
+SPDX-FileCopyrightText: Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<section id="command-line-interface">
+<h1>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>While the AgentIQ library provides the capability to implement components that come together to form Agentic AI
+workflow,the command line interface (CLI) provides a no code entrypoint to configure settings, access the features of
+pre-built components, and mechanisms to launch workflows from configuration files. This document describes the layout
+and functionality of the AgentIQ CLI. To begin, the command hierarchy is depicted below. Each command will be introduced
+throughout the remainder of this document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>aiq
+├── configure
+│   └── channel
+│       ├── add
+│       ├── remove
+│       └── update
+├── eval
+├── info
+│   ├── channels
+│   └── components
+├── registry
+│   ├── publish
+│   ├── pull
+│   ├── remove
+│   └── search
+├── run
+├── serve
+├── start
+│   ├── console
+│   └── fastapi
+├── uninstall
+├── validate
+└── workflow
+    └── create
+</pre></div>
+</div>
+</section>
+<section id="start">
+<h2>Start<a class="headerlink" href="#start" title="Link to this heading">#</a></h2>
+<p>The group of <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span></code> commands provide several mechanisms to launch workflows. Each of these commands are summarized
+in the following sections.</p>
+<section id="fastapi">
+<h3>FastAPI<a class="headerlink" href="#fastapi" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span> <span class="pre">fastapi</span></code> command will serve a FastAPI endpoint for the workflow based on the supplied configuration file
+in the <code class="docutils literal notranslate"><span class="pre">--config_file</span></code> option. This command is ideal for serving a workflow as a microservice that allows client
+applications to submit requests to a workflow. The aiq serve command is a good option when deploying this workflow into
+production as the entrypoint of a containerized application. Additional options are available to serve this workflow
+are made available via the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span> <span class="pre">fastapi</span> <span class="pre">--help</span></code> utility:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>start<span class="w"> </span>fastapi<span class="w"> </span>--help
+<span class="go">Usage: aiq start fastapi [OPTIONS]</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE              A JSON/YAML file that sets the parameters</span>
+<span class="go">                                  for the workflow.  [required]</span>
+<span class="go">  --override &lt;TEXT TEXT&gt;...       Override config values using dot notation</span>
+<span class="go">                                  (e.g., --override llms.nim_llm.temperature</span>
+<span class="go">                                  0.7)</span>
+<span class="go">  --root_path TEXT                The root path for the API</span>
+<span class="go">  --host TEXT                     Host to bind the server to</span>
+<span class="go">  --port INTEGER                  Port to bind the server to</span>
+<span class="go">  --reload BOOLEAN                Enable auto-reload for development</span>
+<span class="go">  --workers INTEGER               Number of workers to run</span>
+<span class="go">  --step_adaptor STEPADAPTORCONFIG</span>
+<span class="go">  --workflow ENDPOINTBASE         Endpoint for the default workflow.</span>
+<span class="go">  --endpoints ENDPOINT            Additional endpoints to add to the FastAPI</span>
+<span class="go">                                  app which run functions within the AgentIQ</span>
+<span class="go">                                  configuration. Each endpoint must have a</span>
+<span class="go">                                  unique path.</span>
+<span class="go">  --use_gunicorn BOOLEAN          Use Gunicorn to run the FastAPI app</span>
+<span class="go">  --runner_class TEXT             The AgentIQ runner class to use when launching</span>
+<span class="go">                                  the FastAPI app from multiple processes.</span>
+<span class="go">                                  Each runner is responsible for loading and</span>
+<span class="go">                                  running the AgentIQ workflow. Note: This is</span>
+<span class="go">                                  different from the worker class used by</span>
+<span class="go">                                  Gunicorn.</span>
+<span class="go">  --help                          Show this message and exit.</span>
+</pre></div>
+</div>
+<p>Once a workflow has been launched using the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span> <span class="pre">fastapi</span></code> command, client applications may submit POST requests
+that will run data through the hosted workflow. To access documentation on the available routes and schemas, Swagger API
+documentation are made available at the <HOST>:<IP>/docs endpoint. For example, if serving locally, with
+the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span>start<span class="w"> </span>fastapi<span class="w"> </span>--config_file<span class="o">=</span>path/to/config<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+</pre></div>
+</div>
+<p>The Swagger API docs will be available at: <a class="reference external" href="http://localhost:8000/docs">http://localhost:8000/docs</a></p>
+</section>
+<section id="console">
+<h3>Console<a class="headerlink" href="#console" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span> <span class="pre">console</span></code> command will run an AgentIQ workflow from a provided configuration file against inputs supplied
+at the command line or from file using the <code class="docutils literal notranslate"><span class="pre">--inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">--input_file</span></code> options, respectively. Additionally, fields in
+the configuration file can be overridden by command line using the <code class="docutils literal notranslate"><span class="pre">--override</span></code> flag and dot notation to traverse to the
+configuration hierarchy to the field being overridden. The run command can be useful running one off tests when
+debugging a workflow debugging. When invoking the run command, the workflow will follow the same harness as the
+other workflow launch commands. This simplifies the debugging process when transitioning from development to production.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span> <span class="pre">console</span></code> help utility provides a brief description of each option to describe is usage.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>start<span class="w"> </span>console<span class="w"> </span>--help
+<span class="go">Usage: aiq start console [OPTIONS]</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE         A JSON/YAML file that sets the parameters for the</span>
+<span class="go">                             workflow.  [required]</span>
+<span class="go">  --override &lt;TEXT TEXT&gt;...  Override config values using dot notation (e.g.,</span>
+<span class="go">                             --override llms.nim_llm.temperature 0.7)</span>
+<span class="go">  --input TEXT               A single input to submit the the workflow.</span>
+<span class="go">  --input_file FILE          Path to a json file of inputs to submit to the</span>
+<span class="go">                             workflow.</span>
+<span class="go">  --help                     Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="run">
+<h2>Run<a class="headerlink" href="#run" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">run</span></code> is an alias for the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span> <span class="pre">console</span></code> command and will run an AgentIQ workflow from a provided configuration file against inputs supplied at the
+command line or from file using the <code class="docutils literal notranslate"><span class="pre">--inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">--input_file</span></code> options, respectively. Additionally, fields in the
+configuration file can be overridden by command line using the <code class="docutils literal notranslate"><span class="pre">--override</span></code> flag and dot notation to traverse to the
+configuration hierarchy to the field being overridden. The run command can be useful running one off tests when
+debugging a workflow debugging. When invoking the run command, the workflow will follow the same harness as the
+other workflow launch commands. This simplifies the debugging process when transitioning from development to production.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">run</span></code> help utility provides a brief description of each option to describe is usage.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>run<span class="w"> </span>--help
+<span class="go">Usage: aiq run [OPTIONS]</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE         A JSON/YAML file that sets the parameters for the</span>
+<span class="go">                             workflow.  [required]</span>
+<span class="go">  --override &lt;TEXT TEXT&gt;...  Override config values using dot notation (e.g.,</span>
+<span class="go">                             --override llms.nim_llm.temperature 0.7)</span>
+<span class="go">  --input TEXT               A single input to submit the the workflow.</span>
+<span class="go">  --input_file FILE          Path to a json file of inputs to submit to the</span>
+<span class="go">                             workflow.</span>
+<span class="go">  --help                     Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+<section id="serve">
+<h2>Serve<a class="headerlink" href="#serve" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">serve</span></code> is an alias for the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">start</span> <span class="pre">fastapi</span></code> command and will serve a FastAPI endpoint for the workflow based
+on the supplied configuration file in the <code class="docutils literal notranslate"><span class="pre">--config_file</span></code> option. This command is ideal for serving a workflow as a
+microservice that allows client applications to submit requests to a workflow. The aiq serve command is a good option
+when deploying this workflow into production as the entrypoint of a containerized application. Additional options are
+available to serve this workflow are made available via the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">serve</span> <span class="pre">--help</span></code> utility:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>serve<span class="w"> </span>--help
+<span class="go">Usage: aiq serve [OPTIONS]</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE              A JSON/YAML file that sets the parameters</span>
+<span class="go">                                  for the workflow.  [required]</span>
+<span class="go">  --override &lt;TEXT TEXT&gt;...       Override config values using dot notation</span>
+<span class="go">                                  (e.g., --override llms.nim_llm.temperature</span>
+<span class="go">                                  0.7)</span>
+<span class="go">  --root_path TEXT                The root path for the API</span>
+<span class="go">  --host TEXT                     Host to bind the server to</span>
+<span class="go">  --port INTEGER                  Port to bind the server to</span>
+<span class="go">  --reload BOOLEAN                Enable auto-reload for development</span>
+<span class="go">  --workers INTEGER               Number of workers to run</span>
+<span class="go">  --step_adaptor STEPADAPTORCONFIG</span>
+<span class="go">  --workflow ENDPOINTBASE         Endpoint for the default workflow.</span>
+<span class="go">  --endpoints ENDPOINT            Additional endpoints to add to the FastAPI</span>
+<span class="go">                                  app which run functions within the AgentIQ</span>
+<span class="go">                                  configuration. Each endpoint must have a</span>
+<span class="go">                                  unique path.</span>
+<span class="go">  --use_gunicorn BOOLEAN          Use Gunicorn to run the FastAPI app</span>
+<span class="go">  --runner_class TEXT             The AgentIQ runner class to use when launching</span>
+<span class="go">                                  the FastAPI app from multiple processes.</span>
+<span class="go">                                  Each runner is responsible for loading and</span>
+<span class="go">                                  running the AgentIQ workflow. Note: This is</span>
+<span class="go">                                  different from the worker class used by</span>
+<span class="go">                                  Gunicorn.</span>
+<span class="go">  --help                          Show this message and exit.</span>
+</pre></div>
+</div>
+<p>Once a workflow has been launched using the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">serve</span></code> command, client applications may submit POST requests that will
+run data through the hosted workflow. To access documentation on the available routes and schemas, Swagger API
+documentation are made available at the <HOST>:<IP>/docs endpoint. For example, if serving locally, with
+the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span>serve<span class="w"> </span>--config_file<span class="o">=</span>path/to/config<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+</pre></div>
+</div>
+<p>The Swagger API docs will be available at: <a class="reference external" href="http://localhost:8000/docs">http://localhost:8000/docs</a></p>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">eval</span></code> command provides access a set of evaluators designed to assessing the accuracy of AgentIQ workflows as
+well as instrumenting their performance characteristics. Please reference
+<a class="reference internal" href="../guides/evaluate.html"><span class="std std-doc">Evaluating AgentIQ Workflows</span></a> for a detailed overview of the
+suite of evaluation capabilities.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">eval</span> <span class="pre">--help</span></code> utility provides a brief overview of the command and its available options.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--help
+<span class="go">Usage: aiq eval [OPTIONS] COMMAND [ARGS]...</span>
+
+<span class="go">  Evaluate a workflow with the specified dataset.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE          A JSON/YAML file that sets the parameters for</span>
+<span class="go">                              the workflow and evaluation.  [required]</span>
+<span class="go">  --dataset FILE              A json file with questions and ground truth</span>
+<span class="go">                              answers. This will override the dataset path in</span>
+<span class="go">                              the config file.</span>
+<span class="go">  --result_json_path TEXT     A JSON path to extract the result from the</span>
+<span class="go">                              workflow. Use this when the workflow returns</span>
+<span class="go">                              multiple objects or a dictionary. For example,</span>
+<span class="go">                              &#39;$.output&#39; will extract the &#39;output&#39; field from</span>
+<span class="go">                              the result.  [default: $]</span>
+<span class="go">  --skip_workflow             Skip the workflow execution and use the provided</span>
+<span class="go">                              dataset for evaluation. In this case the dataset</span>
+<span class="go">                              should have the &#39;generated_&#39; columns.</span>
+<span class="go">  --skip_completed_entries    Skip the dataset entries that have a generated</span>
+<span class="go">                              answer.</span>
+<span class="go">  --endpoint TEXT             Use endpoint for running the workflow. Example:</span>
+<span class="go">                              http://localhost:8000/generate</span>
+<span class="go">  --endpoint_timeout INTEGER  HTTP response timeout in seconds. Only relevant</span>
+<span class="go">                              if endpoint is specified.  [default: 300]</span>
+<span class="go">  --reps INTEGER              Number of repetitions for the evaluation.</span>
+<span class="go">                              [default: 1]</span>
+<span class="go">  --help                      Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+<section id="uninstall">
+<h2>Uninstall<a class="headerlink" href="#uninstall" title="Link to this heading">#</a></h2>
+<p>When a package and its corresponding components are no longer needed, they can be removed from the local environment.
+This can help if certain packages are creating dependency conflicts. To remove packages from the local environment, use
+the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">uninstall</span></code> command. This command can be used with one or more aiq packages. The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">uninstall</span> <span class="pre">--help</span></code> utility
+illustrates is usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>uninstall<span class="w"> </span>--help
+<span class="go">Usage: aiq uninstall [OPTIONS] PACKAGES COMMAND [ARGS]...</span>
+
+<span class="go">  Uninstall an AgentIQ plugin packages from the local environment.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --help  Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+<section id="validate">
+<h2>Validate<a class="headerlink" href="#validate" title="Link to this heading">#</a></h2>
+<p>Running an AgentIQ workflow from the CLI requires a valid workflow configuration file. Use the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">validate</span></code> command to
+ensure a configuration files has been created with the right settings, components and parameters. It can be useful to
+each components valid configuration settings using the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span> <span class="pre">components</span></code> command and corresponding filters.
+The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">validate</span></code> help utility illustrates its usage.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>validate<span class="w"> </span>--help
+<span class="go">Usage: aiq validate [OPTIONS]</span>
+
+<span class="go">  Validate a configuration file</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE  Configuration file to validate  [required]</span>
+<span class="go">  --help              Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
+<p>The extensibility of AgentIQ is made possible through its plugin system. To install these plugins, they must be part of
+a Python package that gets installed in an environment where the AgentIQ library is installed. Creating boiler plate
+package files (e.g. <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>) and aiq component code scaffolding can be tedious. This section provides an overview
+of commands that automate some of these steps.</p>
+<section id="create">
+<h3>Create<a class="headerlink" href="#create" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">workflow</span> <span class="pre">create</span></code> command generates a valid <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file with a plugin section that points to a
+register.py file that has been pre-populated with AgentIQ programming model boiler plate code. This boiler plate code
+should be further customized to implement the desired custom workflow and necessary AgentIQ components. The
+<code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">workflow</span> <span class="pre">create</span> <span class="pre">--help</span></code> utility provides a description of its usage.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>workflow<span class="w"> </span>create<span class="w"> </span>--help
+<span class="go">Usage: aiq workflow create [OPTIONS] WORKFLOW_NAME</span>
+
+<span class="go">  Create a new AgentIQ workflow using templates.</span>
+
+<span class="go">  Args:     workflow_name (str): The name of the new workflow.     install</span>
+<span class="go">  (bool): Whether to install the workflow package immediately.</span>
+<span class="go">  workflow_dir (str): The directory to create the workflow package.</span>
+<span class="go">  description (str): Description to pre-popluate the workflow docstring.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --install / --no-install  Whether to install the workflow package</span>
+<span class="go">                            immediately.  [default: install]</span>
+<span class="go">  --workflow-dir TEXT       Output directory for saving the created workflow.</span>
+<span class="go">                            A new folder with the workflow name will be</span>
+<span class="go">                            created within.Defaults to the present working</span>
+<span class="go">                            directory.  [default: .]</span>
+<span class="go">  --description TEXT        A description of the component being created. Will</span>
+<span class="go">                            be used to populate the docstring and will</span>
+<span class="go">                            describe the component when inspecting installed</span>
+<span class="go">                            components using &#39;aiq info component&#39;  [default:</span>
+<span class="go">                            AgentIQ function template. Please update the</span>
+<span class="go">                            description.]</span>
+<span class="go">  --help                    Show this message and exit.</span>
+</pre></div>
+</div>
+<p>Note, a configuration file will not be generated by default. To launch the new workflow from the CLI
+(e.g. using <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">run</span></code> or <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">serve</span></code>), a configuration file will need to be created that maps to these components’
+configuration objects. For more information on configuration objects, refer to
+<a class="reference internal" href="workflow-configuration.html"><span class="std std-doc">Workflow Configuration</span></a>.</p>
+</section>
+<section id="delete">
+<h3>Delete<a class="headerlink" href="#delete" title="Link to this heading">#</a></h3>
+<p>By default, unless the <code class="docutils literal notranslate"><span class="pre">--no-install</span></code> flag is set, the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">workflow</span> <span class="pre">create</span></code> command will install the generated package
+into the local environment. To remove a workflow package from the local environment, use the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">workflow</span> <span class="pre">delete</span></code> command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>workflow<span class="w"> </span>delete<span class="w"> </span>--help
+<span class="go">Usage: aiq workflow delete [OPTIONS] WORKFLOW_NAME</span>
+
+<span class="go">  Delete an AgentIQ workflow and uninstall its package.</span>
+
+<span class="go">  Args:     workflow_name (str): The name of the workflow to delete.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --help  Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="information-commands">
+<h2>Information Commands<a class="headerlink" href="#information-commands" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span></code> command group provides utilities that facilitate the discovery of registered AgentIQ components and
+retrieval of information about the locally configured AgentIQ environment.</p>
+<section id="components-information">
+<h3>Components Information<a class="headerlink" href="#components-information" title="Link to this heading">#</a></h3>
+<p>When defining an AgentIQ workflow’s configuration file, it can be helpful to discover the locally registered components,
+possible configuration settings, and their default values. The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span> <span class="pre">components</span></code> will provide this information in
+tabular format with the following columns.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">package</span></code>: The Python package containing this row’s AgentIQ component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code>: The version of the Python package containing the AgentIQ component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">component_type</span></code>: The type of AgentIQ component this row represents
+(e.g. <code class="docutils literal notranslate"><span class="pre">front_end</span></code>, <code class="docutils literal notranslate"><span class="pre">function</span></code>, <code class="docutils literal notranslate"><span class="pre">tool_wrapper</span></code>, <code class="docutils literal notranslate"><span class="pre">llm_provider</span></code>, <code class="docutils literal notranslate"><span class="pre">llm_client</span></code>, <code class="docutils literal notranslate"><span class="pre">embedder_provider</span></code>, <code class="docutils literal notranslate"><span class="pre">embedder_client</span></code>,
+<code class="docutils literal notranslate"><span class="pre">evaluator</span></code>, <code class="docutils literal notranslate"><span class="pre">memory</span></code>, <code class="docutils literal notranslate"><span class="pre">retriever_provider</span></code>, <code class="docutils literal notranslate"><span class="pre">retriever_client</span></code>, <code class="docutils literal notranslate"><span class="pre">registry_handler</span></code>, <code class="docutils literal notranslate"><span class="pre">package</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">component_name</span></code>: The name of the AgentIQ component to be specified in the <code class="docutils literal notranslate"><span class="pre">_type</span></code> field of the component’s section
+of the configuration file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code>: A description of the component’s uses, configuration parameters, and any default values. These
+parameters are what will need to be specified in the configuration object.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span> <span class="pre">components</span> <span class="pre">--help</span></code> utility provides an overview of usage and filter options:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>info<span class="w"> </span>components<span class="w"> </span>--help
+<span class="go">Usage: aiq info components [OPTIONS] COMMAND [ARGS]...</span>
+
+<span class="go">  List the locally registered AgentIQ components.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -t, --types [front_end|function|tool_wrapper|llm_provider|llm_client|embedder_provider|embedder_client|evaluator|memory|retriever_provider|retriever_client|registry_handler|logging|tracing|package|undefined]</span>
+<span class="go">                                  Filter the search by AgentIQ component type.</span>
+<span class="go">  -o, --output_path TEXT          Path to save search results.</span>
+<span class="go">  -q, --query TEXT                The query string.  [default: &quot;&quot;]</span>
+<span class="go">  -n, --num_results INTEGER       Number of results to return.  [default: -1]</span>
+<span class="go">  -f, --fields [all|package|version|component_name|description|developer_notes]</span>
+<span class="go">                                  Fields used when applying query.</span>
+<span class="go">  --help                          Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+<section id="channels-information">
+<h3>Channels Information<a class="headerlink" href="#channels-information" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span> <span class="pre">channels</span></code> command provides a list of each configured remote registry channel and their corresponding
+configuration settings. This command provides the <code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--type</span></code> option to filter the remote registry channels by type.
+By default, this command will return an empty list. The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span></code> command group will not be functional without
+first configuring registry channels with the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">configure</span> <span class="pre">channels</span> <span class="pre">add</span></code> command. Successful channel configurations
+will be returned when invoking the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span> <span class="pre">channels</span></code> command.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">info</span> <span class="pre">channels</span> <span class="pre">--help</span></code> provides an overview of its usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>info<span class="w"> </span>channels<span class="w"> </span>--help
+<span class="go">Usage: aiq info channels [OPTIONS] COMMAND [ARGS]...</span>
+
+<span class="go">  List the configured remote registry channels.</span>
+
+<span class="go">Options:</span>
+<span class="go">  -t, --type TEXT  Filter the results by channel type.</span>
+<span class="go">  --help           Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-commands">
+<h2>Configuration Commands<a class="headerlink" href="#configuration-commands" title="Link to this heading">#</a></h2>
+<p>An AgentIQ developer may want to configure persistent settings for their development environment. These settings would
+be configured once to setup their development environment so they can focus on software development from that point
+forward. This section discusses the various configuration settings available for AgentIQ developers.</p>
+<section id="remote-registry-configuration">
+<h3>Remote Registry Configuration<a class="headerlink" href="#remote-registry-configuration" title="Link to this heading">#</a></h3>
+<p>One of the core value propositions of the AgentIQ library is the redistribution of components with other developers.
+Being able to package and distribute packages such that other developers can leverage them is critical to accelerating
+developer velocity. Similarly, being able to discover and install components built by others will improve the
+current developer’s velocity. To facilitate this process, AgentIQ implements a remote registry <code class="docutils literal notranslate"><span class="pre">channel</span></code> concept that
+allows AgentIQ developers to subscribe to registries that store published AgentIQ packages, each container containing
+usable components. A <code class="docutils literal notranslate"><span class="pre">channel</span></code> is analogous to a Conda channel for Anaconda users or a PyPI registry for pip users.</p>
+<section id="adding-a-remote-registry-channel">
+<h4>Adding a Remote Registry Channel<a class="headerlink" href="#adding-a-remote-registry-channel" title="Link to this heading">#</a></h4>
+<p>Currently, there are two channel types that facilitate remote discovery and reuse:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rest</span></code> – provides a contract driven interface to a registry service behind a REST endpoint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pypi</span></code> – a simple interface to publish packages to a private PyPI registry.</p></li>
+</ul>
+<p>Invoking the aiq info components command provides an description of the available channel settings:</p>
+<p>Here we provide a example that configures a remote rest channel. To use this channel, there must exists a remote
+registry that adheres to the contracts defined in the AgentIQ’s rest handler.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>configure<span class="w"> </span>channel<span class="w"> </span>add<span class="w"> </span>rest
+<span class="go">Channel Name: my_rest_channel  # A user defined locally unique name used to reference this configured channel</span>
+<span class="go">Endpoint: http://my_rest_channel_url.com  # The endpoint to the remote rest registry service</span>
+<span class="go">Token: my_rest_token  # The authentication token to interact with this rest registry service</span>
+<span class="go">Publish Route: publish  # The route to use when publishing AgentIQ packages</span>
+<span class="go">Pull Route: pull  # The route to use when downloading AgentIQ packages</span>
+<span class="go">Search Route: search  # The route use when searching for relevant AgentIQ packages</span>
+<span class="go">Remove Route: remove  # The route to use when removing a published package from a remote rest registy</span>
+</pre></div>
+</div>
+<p>Here we provide a example that configures a remote <code class="docutils literal notranslate"><span class="pre">pypi</span></code> channel. This assumes there exists a private PyPI registry.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>configure<span class="w"> </span>channel<span class="w"> </span>add<span class="w"> </span>pypi
+<span class="go">Channel Name: my_pypi_channel  # A user defined locally unique name used to reference this configured channel</span>
+<span class="go">Endpoint: http://my_pypi_channel_url.com  # The endpoint to the private pypi registry service</span>
+<span class="go">Token: my_pypi_token  # The authentication token to interact with this pypi registry service</span>
+<span class="go">Publish Route:  # The route to use when publishing AgentIQ packages, setting an empty value here</span>
+<span class="go">Pull Route: # The route to use when downloading AgentIQ packages, setting an empty value here</span>
+<span class="go">Search Route: simple  # The route use when searching for relevant AgentIQ packages</span>
+</pre></div>
+</div>
+</section>
+<section id="updating-a-remote-registry-channel-configuration">
+<h4>Updating a Remote Registry Channel Configuration<a class="headerlink" href="#updating-a-remote-registry-channel-configuration" title="Link to this heading">#</a></h4>
+<p>At some point, a developer might need to update a remote registry channel’s configuration settings. In this case,
+using the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">configure</span> <span class="pre">registry</span> <span class="pre">update</span></code> command will select a remote registry by its locally unique name and allow
+the developer to override the configuration settings.</p>
+<p>A usage example is provided below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>configure<span class="w"> </span>channel<span class="w"> </span>update<span class="w"> </span>my_rest_channel
+<span class="go">Endpoint: http://my_updated_rest_channel_url.com  # The overridden endpoint to the remote rest registry service</span>
+<span class="go">Token: my_rest_token</span>
+<span class="go">Publish Route: publish</span>
+<span class="go">Pull Route: pull</span>
+<span class="go">Search Route: search</span>
+<span class="go">Remove Route: remove</span>
+</pre></div>
+</div>
+</section>
+<section id="removing-a-remote-registry-channel">
+<h4>Removing a Remote Registry Channel<a class="headerlink" href="#removing-a-remote-registry-channel" title="Link to this heading">#</a></h4>
+<p>A developer may need to remove a locally configured remote registry channel. In this case, the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">remove</span></code>
+command can be used. The channel will be removed based on the name supplied with the command.</p>
+<p>An example of using this command is provided below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aiq<span class="w"> </span>configure<span class="w"> </span>channel<span class="w"> </span>remove<span class="w"> </span>my_rest_channel
+</pre></div>
+</div>
+<p>Note, once a channel is removed, it will no longer be able to support <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">publish</span></code>, <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">search</span></code>,
+<code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">pull</span></code>, or <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">remove</span></code> commands until reconfigured.</p>
+</section>
+</section>
+</section>
+<section id="remote-registry-interactions">
+<h2>Remote Registry Interactions<a class="headerlink" href="#remote-registry-interactions" title="Link to this heading">#</a></h2>
+<p>AgentIQ is designed to be a community oriented library. This means that developer productivity is maximized when others
+distribute AgentIQ plugin packages that will benefit others. This section will introduce the mechanisms the AgentIQ CLI
+exposes to facilitate publishing, discovering, downloading, and removing AgentIQ packages from a configured remote
+registry. Here we define a remote registry as a centralized location that stores plugin wheel packages and AgentIQ
+specific metadata to that describes its usage details. Before these commands can be used, a remote registry must be
+available and a developer must have configured the corresponding channel using the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">configure</span> <span class="pre">channel</span> <span class="pre">add</span></code> command.
+See <a class="reference internal" href="#adding-a-remote-registry-channel"><span class="std std-ref">Adding a Remote Registry Channel</span></a> for more details on
+adding a remote registry channels.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span></code> help command will provide the available commands in this group.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>registry<span class="w"> </span>--help
+<span class="go">Usage: aiq registry [OPTIONS] COMMAND [ARGS]...</span>
+
+<span class="go">  Utility to configure AgentIQ remote registry channels.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --help  Show this message and exit.</span>
+
+<span class="go">Commands:</span>
+<span class="go">  publish  Publish local AgentIQ artifacts to a remote registry from package...</span>
+<span class="go">  pull     Pull AgentIQ artifacts from a remote registry by package name.</span>
+<span class="go">  remove   Remove AgentIQ artifact from a remote registry by name and version.</span>
+<span class="go">  search   Search for AgentIQ artifacts from remote registry.</span>
+</pre></div>
+</div>
+<section id="publishing-agentiq-components">
+<h3>Publishing AgentIQ Components<a class="headerlink" href="#publishing-agentiq-components" title="Link to this heading">#</a></h3>
+<p>AgentIQ developers may want to distribute their components with the broader ecosystem. The AgentIQ publish CLI utility
+provides a mechanism to publish an AgentIQ plugin package to a remote registry channel so that other developers can
+benefit from it’s implemented components. Invoking the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">publish</span></code> command will build a package wheel, gather
+all component metadata, and transmit to the specified remote registry by channel name. Note, a package must be first
+installed locally so the discovery hooks can pull in necessary AgentIQ component metadata.</p>
+<p>The aiq registry publish –help utility provides an overview of its usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>registry<span class="w"> </span>publish<span class="w"> </span>--help
+<span class="go">Usage: aiq registry publish [OPTIONS] PACKAGE_ROOT COMMAND [ARGS]...</span>
+
+<span class="go">  Publish local AgentIQ artifacts to a remote registry from package</span>
+<span class="go">  repository.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE  A YAML file to override configured channel settings.</span>
+<span class="go">  -c, --channel TEXT  The remote registry channel to use when publishing the</span>
+<span class="go">                      AgentIQ artifact.  [required]</span>
+<span class="go">  --help              Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+<section id="discovering-agentiq-components">
+<h3>Discovering AgentIQ Components<a class="headerlink" href="#discovering-agentiq-components" title="Link to this heading">#</a></h3>
+<p>When developing and deploying AgentIQ workflows, it is most efficient to leverage pre-built components. When using
+pre-built components will, only configuration settings are required to integration with the rest of a workflow. These
+pre-built exist in the core library, as well as, within other AgentIQ plugin packages. Remote registry channels are the
+formal mechanism to publish reusable components to the community. The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">search</span></code> command allows developers
+to search relevant pre-built components that might benefit their application. The search command is usually followed up
+by an aiq registry pull command, once a useful package has been identified.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">search</span> <span class="pre">--help</span></code> utility provides an overview of its usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>registry<span class="w"> </span>search<span class="w"> </span>--help
+<span class="go">Usage: aiq registry search [OPTIONS] COMMAND [ARGS]...</span>
+
+<span class="go">  Search for AgentIQ artifacts from remote registry.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE              A JSON/YAML file that sets the parameters</span>
+<span class="go">                                  for the workflow.</span>
+<span class="go">  -c, --channel TEXT              The remote registry channel to use when</span>
+<span class="go">                                  pulling the AgentIQ artifact.  [required]</span>
+<span class="go">  -o, --output_path TEXT          Path to save search results.</span>
+<span class="go">  -f, --fields [all|package|version|component_name|description|developer_notes]</span>
+<span class="go">                                  The fields to include in the search.</span>
+<span class="go">  -q, --query TEXT                The query string.  [required]</span>
+<span class="go">  -n, --n_results INTEGER         Number of search results to return.</span>
+<span class="go">                                  [default: 10]</span>
+<span class="go">  -t, --types [front_end|function|tool_wrapper|llm_provider|llm_client|embedder_provider|embedder_client|evaluator|memory|retriever_provider|retriever_client|registry_handler|logging|tracing|package|undefined]</span>
+<span class="go">                                  The component types to include in search.</span>
+<span class="go">  --help                          Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+<section id="pulling-in-agentiq-components">
+<h3>Pulling in AgentIQ Components<a class="headerlink" href="#pulling-in-agentiq-components" title="Link to this heading">#</a></h3>
+<p>Once a useful AgentIQ component has been discovered using the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">search</span></code> command, the containing package can be
+pulled in and installed from a configured remote registry, so that it can be used withing the local AgentIQ environment.
+Once installed, all components in the package can be referenced by name in an AgentIQ workflow YAML configuration file.
+In many cases, components can be stitched together in YAML without having to write much integration code.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">pull</span> <span class="pre">--help</span></code> command provides an overview of its usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>registry<span class="w"> </span>pull<span class="w"> </span>--help
+<span class="go">Usage: aiq registry pull [OPTIONS] PACKAGES COMMAND [ARGS]...</span>
+
+<span class="go">  Pull AgentIQ artifacts from a remote registry by package name.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE  A YAML file to override the channel settings.</span>
+<span class="go">  -c, --channel TEXT  The remote registry channel to use when pulling the</span>
+<span class="go">                      AgentIQ artifact.  [required]</span>
+<span class="go">  --help              Show this message and exit.</span>
+</pre></div>
+</div>
+<p>Note, the supplied package takes the following format: <code class="docutils literal notranslate"><span class="pre">package_name==version</span></code>, where the package version is optional.</p>
+</section>
+<section id="removing-agentiq-components">
+<h3>Removing AgentIQ Components<a class="headerlink" href="#removing-agentiq-components" title="Link to this heading">#</a></h3>
+<p>In rare cases, it might make sense to remove a package from a remote registry over a configured remote registry channel.
+This the <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">remove</span></code> command provides support for this feature, assuming the remote registry provides and
+allows this interaction.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aiq</span> <span class="pre">registry</span> <span class="pre">remove</span> <span class="pre">--help</span></code> utility provides an overview of its usage.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>aiq<span class="w"> </span>registry<span class="w"> </span>remove<span class="w"> </span>--help
+<span class="go">Usage: aiq registry remove [OPTIONS] PACKAGES COMMAND [ARGS]...</span>
+
+<span class="go">  Remove AgentIQ artifact from a remote registry by name and version.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --config_file FILE  A YAML file to override the channel settings.</span>
+<span class="go">  -c, --channel TEXT  The remote registry channel that will remove the AgentIQ</span>
+<span class="go">                      artifact.  [required]</span>
+<span class="go">  --help              Show this message and exit.</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="observability.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">NVIDIA AgentIQ Observability</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plugins.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Plugin System in NVIDIA AgentIQ</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+
+
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start">Start</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fastapi">FastAPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#console">Console</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run">Run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serve">Serve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uninstall">Uninstall</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate">Validate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create">Create</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">Delete</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-commands">Information Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components-information">Components Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#channels-information">Channels Information</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-commands">Configuration Commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-registry-configuration">Remote Registry Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-remote-registry-channel">Adding a Remote Registry Channel</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-a-remote-registry-channel-configuration">Updating a Remote Registry Channel Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-a-remote-registry-channel">Removing a Remote Registry Channel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-registry-interactions">Remote Registry Interactions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publishing-agentiq-components">Publishing AgentIQ Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discovering-agentiq-components">Discovering AgentIQ Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-in-agentiq-components">Pulling in AgentIQ Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-agentiq-components">Removing AgentIQ Components</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+<a class="footer-brand logo" href="https://www.nvidia.com">
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg" class="logo__image only-light" alt="NVIDIA"/>
+  <img src="../_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg" class="logo__image only-dark" alt="NVIDIA"/>
+</a></div>
+      
+        <div class="footer-item">
+
+<div class="footer-links">
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/product-security/">Product Security</a>
+   | 
+  
+  
+  
+  <a class="external" href="https://www.nvidia.com/en-us/contact/">Contact</a>
+  
+  
+  
+</div>
+</div>
+      
+        <div class="footer-item">
+
+
+
+
+  <p class="copyright">
+    
+      Copyright © 2025, NVIDIA.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+<div class="extra_footer">
+  
+  
+    <script type="text/javascript">if (typeof _satellite !== "undefined") {_satellite.pageBottom();}</script>
+    
+  
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  <script type="text/javascript">_satellite.pageBottom();</script>
+</body>
+</html>

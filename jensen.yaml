@@ -16,7 +16,7 @@ functions:
   wikipedia_search:
     _type: wiki_search
     max_results: 5
-  internet_search:
+  tavily_search:
     _type: tavily_internet_search
   # needs an api key - export TAVILY_API_KEY=<YOUR_TAVILY_API_KEY>
   current_datetime:
@@ -106,8 +106,8 @@ functions:
   code_execution_tool:
     _type: code_execution
     programming_language: "Python"
-    description: "Useful to generate Python code. For any questions about code generation, you must only use this tool!"
-    uri: "https://emkc.org/api/v2/piston"
+    description: "Useful to generate Python code. For any questions about code execution, you must only use this tool!"
+    uri: "https://emkc.org/api/v2/piston/execute"
     timeout: 30
     max_output_characters: 3000
 
@@ -158,6 +158,32 @@ functions:
     handle_tool_errors: true
     description: "Useful for using file system operations. If you need to create, edit, read, move and do other file operations, you must use this tool!"
 
+  cuda_retriever_tool:
+    _type: aiq_retriever
+    retriever: cuda_retriever
+    topic: Retrieve documentation for NVIDIA's CUDA library
+
+  mcp_retriever_tool:
+    _type: aiq_retriever
+    retriever: mcp_retriever
+    topic: Retrieve information about Model Context Protocol (MCP)
+
+  add_memory:
+    _type: add_memory
+    memory: saas_memory
+    description: |
+      Add any facts about user preferences to long term memory. Always use this if users mention a preference.
+      The input to this tool should be a string that describes the user's preference, not the question or answer.
+
+  get_memory:
+    _type: get_memory
+    memory: saas_memory
+    description: |
+      Always call this tool before calling any other tools, even if the user does not mention to use it.
+      The question should be about user preferences which will help you format your response.
+      For example: "How does the user like responses formatted?"
+
+  # agents
   internet_agent:
     _type: tool_calling_agent
     tool_names:
@@ -170,7 +196,7 @@ functions:
     handle_tool_errors: true
     description: "Useful for performing internet searches. Exa search has more tailored results for natural language queries, but be sure to use what you determine would be the best!"
 
-  search_agent:
+  retrieval_agent:
     _type: tool_calling_agent
     tool_names:
       - nvidia_agent_iq_query
@@ -196,29 +222,52 @@ embedders:
   nv-embedqa-e5-v5:
     _type: nim
     model_name: nvidia/nv-embedqa-e5-v5
+  milvus_embedder:
+    _type: nim
+    model_name: nvidia/nv-embedqa-e5-v5
+    truncate: "END"
+
+retrievers:
+  cuda_retriever:
+    _type: milvus_retriever
+    uri: http://localhost:19530
+    collection_name: "cuda_docs"
+    embedding_model: milvus_embedder
+    top_k: 10
+  mcp_retriever:
+    _type: milvus_retriever
+    uri: http://localhost:19530
+    collection_name: "mcp_docs"
+    embedding_model: milvus_embedder
+    top_k: 10
 
 llms:
   #  l AIQ toolkit which LLM to use for the agent
   general_model:
-    _type: nim
-    model_name: meta/llama-3.3-70b-instruct
+    # _type: nim
+    # model_name: meta/llama-3.1-70b-instruct
+    _type: openai
+    model_name: gpt-4o
     temperature: 0.4
     max_tokens: 1024
   smol_agent:
-    _type: nim
-    model_name: meta/llama-3.3-8b-instruct
+    # _type: nim
+    # model_name: meta/llama-3.3-8b-instruct
+    _type: openai
+    model_name: gpt-4o
     temperature: 0.4
     max_tokens: 2000
   big_model:
-    _type: nim
-    # model_name: deepseek-ai/deepseek-r1
-    model_name: meta/llama-3.1-405b-instruct
+    # _type: nim
+    # model_name: meta/llama-3.1-405b-instruct
+    _type: openai
+    model_name: gpt-4o
     temperature: 0.4
     max_tokens: 1000
-  # openai_llm:
-  #   _type: openai
-  #   model_name: gpt-3.5-turbo
-  #   max_tokens: 2000
+  openai_llm:
+    _type: openai
+    model_name: gpt-4o
+    max_tokens: 2000
 
 workflow:
   # Use an agent that 'reasons' and 'acts' - https://react-lm.github.io/
@@ -228,7 +277,7 @@ workflow:
   # _type: reasoning_agent
   llm_name: big_model
   # augmented_fn: react_agent
-  tool_names: [search_agent, code_agent, internet_agent, filesystem_agent]
+  tool_names: [retrieval_agent, code_agent, internet_agent, filesystem_agent]
   # tool_names:
   #   [
   #     exa_search,
