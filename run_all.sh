@@ -13,7 +13,7 @@ run_script() {
 }
 
 # Launch each service script in the background
-run_script "${BASE_DIR}/code-exec.sh" &
+# run_script "${BASE_DIR}/code_exec/code-exec.sh" &
 run_script "${BASE_DIR}/exa-mcp.sh" &
 run_script "${BASE_DIR}/filesystem-mcp.sh" &
 run_script "${BASE_DIR}/terminal.sh" &

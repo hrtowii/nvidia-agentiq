@@ -111,8 +111,10 @@ functions:
   code_execution_tool:
     _type: code_execution
     programming_language: "Python"
+    version: "3.11"
     description: "Useful to generate Python code. For any questions about code execution, you must only use this tool!"
-    uri: "https://emkc.org/api/v2/piston/execute"
+    # uri: "https://emkc.org/api/v2/piston/execute" # {"message": "version is required as a string"}
+    # use sandbox instead... refer to code_exec dir
     timeout: 30
     max_output_characters: 3000
 
@@ -293,7 +295,15 @@ workflow:
   # _type: reasoning_agent
   llm_name: big_model
   # augmented_fn: react_agent
-  tool_names: [retrieval_agent, code_agent, internet_agent, filesystem_agent]
+  tool_names:
+    [
+      get_memory,
+      add_memory,
+      retrieval_agent,
+      code_agent,
+      internet_agent,
+      filesystem_agent,
+    ]
   # tool_names:
   #   [
   #     exa_search,
