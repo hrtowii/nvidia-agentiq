@@ -1,11 +1,10 @@
 #!/bin/bash
 
 export SERVICE_NAME=terminal
-# This can be any name you want to give to your service.
 export SERVICE_BRIEF_NAME=terminal
 export SERVICE_DIR=./.tmp/mcp/${SERVICE_BRIEF_NAME}_service
 export CONTAINER_NAME=mcp-proxy-aiq-${SERVICE_BRIEF_NAME}
-export SERVER_PORT=9904 #8080 is taken for me by searxng
+export SERVER_PORT=9904
 rm -rf ${SERVICE_DIR}
 mkdir -p ${SERVICE_DIR}
 cp ./Dockerfile ${SERVICE_DIR}/

@@ -1,0 +1,366 @@
+# Multi-agent system with memory capabilities
+general:
+  use_uvloop: true
+
+memory:
+  saas_memory:
+    _type: mem0_memory
+
+functions:
+  # RAG and search tools
+  wikipedia_search:
+    _type: wiki_search
+    max_results: 5
+    description: "Search Wikipedia for information"
+
+  tavily_search:
+    _type: tavily_internet_search
+    description: "Search the internet using Tavily's API"
+
+  current_datetime:
+    _type: current_datetime
+    description: "Get the current date and time"
+
+  exa_search:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9901/sse"
+    mcp_tool_name: web_search_exa
+    description: "Natural language web search"
+
+  # File system tools
+  read_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: read_file
+    description: "Read the complete contents of a file from the file system."
+
+  read_multiple_files:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: read_multiple_files
+    description: "Read the contents of multiple files simultaneously."
+
+  write_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: write_file
+    description: "Create a new file or completely overwrite an existing file with new content."
+
+  edit_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: edit_file
+    description: "Make line-based edits to a text file."
+
+  create_directory:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: create_directory
+    description: "Create a new directory or ensure a directory exists."
+
+  list_directory:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: list_directory
+    description: "Get a detailed listing of all files and directories in a specified path."
+
+  directory_tree:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: directory_tree
+    description: "Get a recursive tree view of files and directories as a JSON structure."
+
+  move_file:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: move_file
+    description: "Move or rename files and directories."
+
+  search_files:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: search_files
+    description: "Recursively search for files and directories matching a pattern."
+
+  get_file_info:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: get_file_info
+    description: "Retrieve detailed metadata about a file or directory."
+
+  list_allowed_directories:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9902/sse"
+    mcp_tool_name: list_allowed_directories
+    description: "Returns the list of directories that this server is allowed to access."
+
+  # Code tools
+  code_generation:
+    _type: code_generation
+    programming_language: "Python"
+    description: "Generates Python code based on provided requirements"
+    llm_name: big_model
+    verbose: true
+
+  code_execution_tool:
+    _type: code_execution
+    programming_language: "Python"
+    description: "Executes Python code and returns the output"
+    uri: "https://emkc.org/api/v2/piston"
+    timeout: 30
+    max_output_characters: 3000
+
+  # Terminal access
+  terminal_tool:
+    _type: mcp_tool_wrapper
+    url: "http://localhost:9904/sse"
+    mcp_tool_name: shell_execute
+    description: "Execute a shell command"
+
+  # Documentation retrieval tools
+  nvidia_agent_iq_query:
+    _type: webpage_query
+    webpage_url: https://docs.nvidia.com/agentiq/latest/guides/create-customize-workflows.html
+    description: "Search for information about NVIDIA AgentIQ"
+    embedder_name: nv-embedqa-e5-v5
+    chunk_size: 512
+
+  langsmith_query:
+    _type: webpage_query
+    webpage_url: https://docs.smith.langchain.com
+    description: "Search for information about LangSmith"
+    embedder_name: nv-embedqa-e5-v5
+    chunk_size: 512
+
+  langgraph_query:
+    _type: webpage_query
+    webpage_url: https://langchain-ai.github.io/langgraph/tutorials/introduction
+    description: "Search for information about LangGraph"
+    embedder_name: nv-embedqa-e5-v5
+    chunk_size: 512
+
+  # Memory tools
+  add_memory:
+    _type: add_memory
+    memory: saas_memory
+    description: |
+      Add any facts about user preferences to long term memory. Always use this if users mention a preference.
+      The input to this tool should be a string that describes the user's preference, not the question or answer.
+
+  get_memory:
+    _type: get_memory
+    memory: saas_memory
+    description: |
+      Always call this tool before calling any other tools, even if the user does not mention to use it.
+      The question should be about user preferences which will help you format your response.
+      For example: "How does the user like responses formatted?"
+
+  # Sub-agents
+  filesystem_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - read_file
+      - read_multiple_files
+      - write_file
+      - edit_file
+      - create_directory
+      - list_directory
+      - directory_tree
+      - move_file
+      - search_files
+      - get_file_info
+      - list_allowed_directories
+      - get_memory
+    llm_name: general_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Useful for using file system operations. If you need to create, edit, read, move and do other file operations, you must use this tool!"
+
+  internet_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - wikipedia_search
+      - current_datetime
+      - tavily_search
+      - exa_search
+      - get_memory
+    llm_name: general_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Useful for performing internet searches. Exa search has more tailored results for natural language queries, but be sure to use what you determine would be the best!"
+
+  retrieval_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - nvidia_agent_iq_query
+      - langsmith_query
+      - langgraph_query
+      - get_memory
+    llm_name: general_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Leverages embedded documentation indices (NVIDIA AgentIQ, LangSmith, LangGraph) to answer questions about your codebase and tools."
+
+  code_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - terminal_tool
+      - code_generation
+      - code_execution_tool
+      - get_memory
+    llm_name: big_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Ideal for writing, executing, and iterating on code—combines shell access with code generation and execution."
+
+embedders:
+  nv-embedqa-e5-v5:
+    _type: nim
+    model_name: nvidia/nv-embedqa-e5-v5
+    truncate: "END"
+
+  milvus_embedder:
+    _type: nim
+    model_name: nvidia/nv-embedqa-e5-v5
+    truncate: "END"
+
+llms:
+  general_model:
+    _type: nim
+    model_name: meta/llama-3.1-70b-instruct
+    temperature: 0.4
+    max_tokens: 1024
+
+  smol_agent:
+    _type: nim
+    model_name: meta/llama-3.3-8b-instruct
+    temperature: 0.4
+    max_tokens: 2000
+
+  big_model:
+    _type: nim
+    model_name: meta/llama-3.1-405b-instruct
+    temperature: 0.4
+    max_tokens: 1000
+
+workflow:
+  _type: react_agent
+  llm_name: big_model
+  tool_names:
+    - retrieval_agent
+    - code_agent
+    - internet_agent
+    - filesystem_agent
+    - add_memory
+    - get_memory
+  verbose: true
+  retry_parsing_errors: true
+  max_retries: 3
+  system_prompt: |
+    You are a helpful and capable AIQ Builder Agent.
+
+    Your mission is to assist users in safely and effectively completing a wide range of AIQ Toolkit tasks by building and modifying components within the `/user_files` directory.
+    
+    You will have a variety of tools and agents working for you. You must validate the output of these tools and agents to ensure they are correct and meet the user's needs. You will also be responsible for creating and modifying files, including `workflow.yaml`, `README.md`, and `Dockerfile`, as well as any other files needed to complete the task.
+
+    General Workflow:
+    1. Understand the user’s request and determine the task scope and relevant tools.
+    2. Access `/user_files/docs` to read the AIQ Toolkit documentation and understand available tools.
+    3. Use memory tools properly:
+       - Always call `get_memory` first using user ID "user_12".
+       - Use only the exact JSON formats provided (see below).
+    4. Perform file operations using your tools:
+       - Create/edit/read files and directories inside `/user_files`
+       - Create a new directory for each task; if one exists, generate a unique name.
+       - Modify `workflow.yaml` as described below.
+    5. Ensure quality and correctness:
+       - Validate that the build meets user intent, documentation standards, and is complete.
+       - Iterate as needed until high-quality output is achieved.
+    6. Communicate clearly with the user:
+       - Ask for clarification if uncertain.
+       - Suggest additions to enhance robustness or usefulness.
+       - Ask users to provide specific files or directories when needed.
+
+    Toolkit Requirements:
+    You have access to the following:
+
+    - Agents and tools:
+      {tools}
+
+    - Tool names:
+      {tool_names}
+
+    Use these tools to:
+    - Search/create/edit inside `/user_files`
+    - Build and modify `workflow.yaml` and supporting files (e.g., `README.md`, `Dockerfile`)
+
+    workflow.yaml Structure:
+    Ensure all required sections are present and correct:
+    general:
+      use_uvloop: true
+
+    functions:
+      # List all tools used with full details (_type, description, etc.)
+
+    llms:
+      nim_llm:
+        _type: nim
+        model_name: meta/llama-3.1-70b-instruct
+        temperature: 0.5
+
+    workflow:
+      _type: react_agent
+      tool_names: [list of tool identifiers from functions]
+      llm_name: nim_llm
+      verbose: true
+      retry_parsing_errors: true
+      max_retries: 3
+
+    Memory Tool Usage (Strict Format):
+
+    get_memory:
+    {
+      "query": "user preferences",
+      "top_k": 1,
+      "user_id": "user_12"
+    }
+
+    add_memory:
+    {
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Hi, I'm Alex. I'm looking for a trip to New York"
+        },
+        {
+          "role": "assistant",
+          "content": "Hello Alex! I've noted you are looking for a trip to New York."
+        }
+      ],
+      "user_id": "user_12",
+      "metadata": {
+        "key_value_pairs": {
+          "type": "preference",
+          "relevance": "high"
+        }
+      },
+      "memory": "User is looking for a trip to New York."
+    }
+
+    Response Format:
+
+    To communicate with an expert, use:
+    Question: [original user query]
+    Thought: [what you're considering]
+    Action: [tool name from {tool_names}]
+    Action Input: [input for the action]
+    Observation: [wait for tool response]
+
+    Once done:
+    Thought: I now know the final answer
+    Final Answer: [your response to the user]
+
+    Reminders:
+    - Do not hallucinate tool responses. Wait for observations.
+    - Always edit files yourself, never rely on the user to make changes.
+    - You may use Exa Search to access the internet when helpful.
