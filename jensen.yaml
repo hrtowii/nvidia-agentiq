@@ -6,6 +6,8 @@
 # search online
 # RAG which already has info on codebase
 
+# mixture of agents?
+# architecture - RAG, file system agent, coding + terminal agent, search agent
 general:
   use_uvloop: true
 
@@ -16,7 +18,7 @@ functions:
     max_results: 5
   internet_search:
     _type: tavily_internet_search
-    # needs an api key - export TAVILY_API_KEY=<YOUR_TAVILY_API_KEY>
+  # needs an api key - export TAVILY_API_KEY=<YOUR_TAVILY_API_KEY>
   current_datetime:
     _type: current_datetime
   # Exa search at 9901
@@ -25,6 +27,7 @@ functions:
     url: "http://localhost:9901/sse"
     mcp_tool_name: web_search_exa
     description: "Natural language web search"
+
   # MCP Filesystem tools at port 9902
   read_file:
     _type: mcp_tool_wrapper
@@ -92,61 +95,126 @@ functions:
     mcp_tool_name: list_allowed_directories
     description: "Returns the list of directories that this server is allowed to access."
 
-  # 9903 code execution sandbox
-  sandbox_initialize:
+  # code execution sandbox
+  code_generation:
+    _type: code_generation
+    programming_language: "Python"
+    description: "Useful to generate Python code. For any questions about code generation, you must only use this tool!"
+    llm_name: big_model
+    verbose: true
+
+  code_execution_tool:
+    _type: code_execution
+    programming_language: "Python"
+    description: "Useful to generate Python code. For any questions about code generation, you must only use this tool!"
+    uri: "https://emkc.org/api/v2/piston"
+    timeout: 30
+    max_output_characters: 3000
+
+  # terminal access
+  terminal_tool:
     _type: mcp_tool_wrapper
-    url: "http://localhost:9903/sse"
-    mcp_tool_name: sandbox_initialize
-    description: "Initialize a new compute environment for code execution. Creates a container based on the specified Docker image or defaults to a slim debian image with Python. Returns a container_id that can be used with other tools to interact with this environment."
-  sandbox_exec:
-    _type: mcp_tool_wrapper
-    url: "http://localhost:9903/sse"
-    mcp_tool_name: sandbox_exec
-    description: "Execute commands in the sandboxed environment. Runs one or more shell commands in the specified container and returns the output."
-  copy_file:
-    _type: mcp_tool_wrapper
-    url: "http://localhost:9903/sse"
-    mcp_tool_name: copy_file
-    description: "Copy a single file to the sandboxed filesystem. Transfers a local file to the specified container."
-  copy_file_from_sandbox:
-    _type: mcp_tool_wrapper
-    url: "http://localhost:9903/sse"
-    mcp_tool_name: copy_file_from_sandbox
-    description: "Copy a single file from the sandboxed filesystem to the local filesystem. Transfers a file from the specified container to the local system."
-  copy_project:
-    _type: mcp_tool_wrapper
-    url: "http://localhost:9903/sse"
-    mcp_tool_name: copy_project
-    description: "Copy a directory to the sandboxed filesystem. Transfers a local directory and its contents to the specified container."
-  write_file_sandbox:
-    _type: mcp_tool_wrapper
-    url: "http://localhost:9903/sse"
-    mcp_tool_name: write_file_sandbox
-    description: "Write a file to the sandboxed filesystem. Creates a file with the specified content in the container."
-  sandbox_stop:
-    _type: mcp_tool_wrapper
-    url: "http://localhost:9903/sse"
-    mcp_tool_name: sandbox_stop
-    description: "Stop and remove a running container sandbox. Gracefully stops the specified container and removes it along with its volumes."
-  #langsmith_query:
-  #   _type: webpage_query
-  #   webpage_url: https://docs.smith.langchain.com
-  #   description: "Search for information about LangSmith. For any questions about LangSmith, you must use this tool!"
-  #   embedder_name: nv-embedqa-e5-v5
-  #   chunk_size: 512
-  # langgraph_query:
-  #   _type: webpage_query
-  #   webpage_url: https://langchain-ai.github.io/langgraph/tutorials/introduction
-  #   description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
-  #   embedder_name: nv-embedqa-e5-v5
-  #   chunk_size: 512
+    url: "http://localhost:9904/sse"
+    mcp_tool_name: shell_execute
+    description: "Execute a shell command"
+
+  nvidia_agent_iq_query:
+    _type: webpage_query
+    webpage_url: https://docs.nvidia.com/agentiq/latest/guides/create-customize-workflows.html
+    description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
+    embedder_name: nv-embedqa-e5-v5
+    chunk_size: 512
+
+  langsmith_query:
+    _type: webpage_query
+    webpage_url: https://docs.smith.langchain.com
+    description: "Search for information about LangSmith. For any questions about LangSmith, you must use this tool!"
+    embedder_name: nv-embedqa-e5-v5
+    chunk_size: 512
+
+  langgraph_query:
+    _type: webpage_query
+    webpage_url: https://langchain-ai.github.io/langgraph/tutorials/introduction
+    description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
+    embedder_name: nv-embedqa-e5-v5
+    chunk_size: 512
+
+  filesystem_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - read_file
+      - read_multiple_files
+      - write_file
+      - edit_file
+      - create_directory
+      - list_directory
+      - directory_tree
+      - move_file
+      - search_files
+      - get_file_info
+      - list_allowed_directories
+    llm_name: general_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Useful for using file system operations. If you need to create, edit, read, move and do other file operations, you must use this tool!"
+
+  internet_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - wikipedia_search
+      - current_datetime
+      - tavily_search
+      - exa_search
+    llm_name: general_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Useful for performing internet searches. Exa search has more tailored results for natural language queries, but be sure to use what you determine would be the best!"
+
+  search_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - nvidia_agent_iq_query
+      - langsmith_query
+      - langgraph_query
+    llm_name: general_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Leverages embedded documentation indices (NVIDIA AgentIQ, LangSmith, LangGraph) to answer questions about your codebase and tools."
+
+  code_agent:
+    _type: tool_calling_agent
+    tool_names:
+      - terminal_tool
+      - code_generation
+      - code_execution_tool
+    llm_name: big_model
+    verbose: true
+    handle_tool_errors: true
+    description: "Ideal for writing, executing, and iterating on code—combines shell access with code generation and execution."
+
+embedders:
+  nv-embedqa-e5-v5:
+    _type: nim
+    model_name: nvidia/nv-embedqa-e5-v5
 
 llms:
   #  l AIQ toolkit which LLM to use for the agent
-  nim_llm:
+  general_model:
     _type: nim
-    model_name: meta/llama-3.1-70b-instruct
-    temperature: 0.5
+    model_name: meta/llama-3.3-70b-instruct
+    temperature: 0.4
+    max_tokens: 1024
+  smol_agent:
+    _type: nim
+    model_name: meta/llama-3.3-8b-instruct
+    temperature: 0.4
+    max_tokens: 2000
+  big_model:
+    _type: nim
+    # model_name: deepseek-ai/deepseek-r1
+    model_name: meta/llama-3.1-405b-instruct
+    temperature: 0.4
+    max_tokens: 1000
   # openai_llm:
   #   _type: openai
   #   model_name: gpt-3.5-turbo
@@ -157,30 +225,75 @@ workflow:
   # https://docs.nvidia.com/aiqtoolkit/latest/workflows/about/reasoning-agent.html
   # https://docs.nvidia.com/aiqtoolkit/latest/workflows/about/rewoo-agent.html
   _type: react_agent
-
-  tool_names:
-    [
-      exa_search,
-      current_datetime,
-      read_file,
-      write_file,
-      edit_file,
-      create_directory,
-      list_directory,
-      directory_tree,
-      move_file,
-      search_files,
-      get_file_info,
-      list_allowed_directories,
-      sandbox_initialize,
-      sandbox_exec,
-      copy_file,
-      copy_file_from_sandbox,
-      copy_project,
-      write_file_sandbox,
-      sandbox_stop,
-    ]
-  llm_name: nim_llm
+  # _type: reasoning_agent
+  llm_name: big_model
+  # augmented_fn: react_agent
+  tool_names: [search_agent, code_agent, internet_agent, filesystem_agent]
+  # tool_names:
+  #   [
+  #     exa_search,
+  #     current_datetime,
+  #     read_file,
+  #     write_file,
+  #     edit_file,
+  #     create_directory,
+  #     list_directory,
+  #     directory_tree,
+  #     move_file,
+  #     search_files,
+  #     get_file_info,
+  #     list_allowed_directories,
+  #     code_execution_tool,
+  #     terminal_tool,
+  #     langgraph_query,
+  #     langsmith_query,
+  #     nvidia_agent_iq_query,
+  #   ]
   verbose: true
   retry_parsing_errors: true
   max_retries: 3
+  system_prompt: |
+    Answer the following questions as best you can. You may communicate and collaborate with various experts to answer the questions:
+
+    {tools}
+
+    Additionally, when creating or modifying the `workflow.yaml` file, you must ensure it contains:
+      - A **general** section with:
+        ```yaml
+        general:
+          use_uvloop: true
+        ```
+      - A **functions** section containing all tools (specify each tool's `_type`, `description`, parameters, URLs, and other required fields per AIQ Toolkit documentation).
+      - An **llms** section configured as:
+        ```yaml
+        llms:
+          nim_llm:
+            _type: nim
+            model_name: meta/llama-3.1-70b-instruct
+            temperature: 0.5
+        ```
+      - A **workflow** section with:
+        ```yaml
+        workflow:
+          _type: react_agent
+          tool_names: [list_all_tool_names_here]
+          llm_name: nim_llm
+          verbose: true
+          retry_parsing_errors: true
+          max_retries: 3
+        ```
+
+    You may respond in one of two formats.
+    Use the following format exactly to communicate with an expert:
+
+    Question: the input question you must answer
+    Thought: you should always think about what to do
+    Action: the action to take, should be one of [{tool_names}]
+    Action Input: the input to the action (if there is no required input, include "Action Input: None")
+    Observation: wait for the expert to respond, do not assume the expert's response
+
+    ... (this Thought/Action/Action Input/Observation can repeat N times.)
+    Use the following format once you have the final answer:
+
+    Thought: I now know the final answer
+    Final Answer: the final answer to the original input question

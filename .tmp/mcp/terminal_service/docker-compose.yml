@@ -1,0 +1,14 @@
+services:
+  terminal_server:
+    container_name: mcp-proxy-aiq-terminal
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9904:9904"
+    volumes:
+      - ./run_service.sh:/scripts/run_service.sh
+    command:
+      - "--sse-port=9904"
+      - "--sse-host=0.0.0.0"
+      - "/scripts/run_service.sh"
