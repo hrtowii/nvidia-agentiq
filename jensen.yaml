@@ -209,7 +209,7 @@ functions:
   retrieval_agent:
     _type: tool_calling_agent
     tool_names:
-      - nvidia_retriever_tool
+      - nvidia_agent_iq_retriever_tool
       - mcp_retriever_tool
       - cuda_retriever_tool
     llm_name: general_model
