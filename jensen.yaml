@@ -11,6 +11,11 @@
 general:
   use_uvloop: true
 
+memory:
+  saas_memory:
+    # https://docs.nvidia.com/agentiq/latest/concepts/memory.html
+    _type: mem0_memory # needs MEM0_API_KEY
+
 functions:
   # Add a tool to search wikipedia
   wikipedia_search:
@@ -118,26 +123,26 @@ functions:
     mcp_tool_name: shell_execute
     description: "Execute a shell command"
 
-  nvidia_agent_iq_query:
-    _type: webpage_query
-    webpage_url: https://docs.nvidia.com/agentiq/latest/guides/create-customize-workflows.html
-    description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
-    embedder_name: nv-embedqa-e5-v5
-    chunk_size: 512
+  # nvidia_agent_iq_query:
+  #   _type: webpage_query
+  #   webpage_url: https://docs.nvidia.com/agentiq/latest/guides/create-customize-workflows.html
+  #   description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
+  #   embedder_name: nv-embedqa-e5-v5
+  #   chunk_size: 512
 
-  langsmith_query:
-    _type: webpage_query
-    webpage_url: https://docs.smith.langchain.com
-    description: "Search for information about LangSmith. For any questions about LangSmith, you must use this tool!"
-    embedder_name: nv-embedqa-e5-v5
-    chunk_size: 512
+  # langsmith_query:
+  #   _type: webpage_query
+  #   webpage_url: https://docs.smith.langchain.com
+  #   description: "Search for information about LangSmith. For any questions about LangSmith, you must use this tool!"
+  #   embedder_name: nv-embedqa-e5-v5
+  #   chunk_size: 512
 
-  langgraph_query:
-    _type: webpage_query
-    webpage_url: https://langchain-ai.github.io/langgraph/tutorials/introduction
-    description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
-    embedder_name: nv-embedqa-e5-v5
-    chunk_size: 512
+  # langgraph_query:
+  #   _type: webpage_query
+  #   webpage_url: https://langchain-ai.github.io/langgraph/tutorials/introduction
+  #   description: "Search for information about LangGraph. For any questions about LangGraph, you must use this tool!"
+  #   embedder_name: nv-embedqa-e5-v5
+  #   chunk_size: 512
 
   filesystem_agent:
     _type: tool_calling_agent
@@ -167,6 +172,11 @@ functions:
     _type: aiq_retriever
     retriever: mcp_retriever
     topic: Retrieve information about Model Context Protocol (MCP)
+
+  nvidia_agent_iq_retriever_tool:
+    _type: aiq_retriever
+    retriever: mcp_retriever
+    topic: Retrieve information about NVIDIA's AI Agent IQ Framework library
 
   add_memory:
     _type: add_memory
@@ -199,13 +209,13 @@ functions:
   retrieval_agent:
     _type: tool_calling_agent
     tool_names:
-      - nvidia_agent_iq_query
-      - langsmith_query
-      - langgraph_query
+      - nvidia_retriever_tool
+      - mcp_retriever_tool
+      - cuda_retriever_tool
     llm_name: general_model
     verbose: true
     handle_tool_errors: true
-    description: "Leverages embedded documentation indices (NVIDIA AgentIQ, LangSmith, LangGraph) to answer questions about your codebase and tools."
+    description: "Leverages embedded documentation indices (NVIDIA AgentIQ, CUDA) to answer questions about your codebase and tools."
 
   code_agent:
     _type: tool_calling_agent
@@ -238,6 +248,12 @@ retrievers:
     _type: milvus_retriever
     uri: http://localhost:19530
     collection_name: "mcp_docs"
+    embedding_model: milvus_embedder
+    top_k: 10
+  nvidia_agent_iq_retriever:
+    _type: milvus_retriever
+    uri: http://localhost:19530
+    collection_name: "nvidia_aiq_docs"
     embedding_model: milvus_embedder
     top_k: 10
 
